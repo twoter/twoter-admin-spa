@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { Provider } from 'react-redux';
 import { HelloWorld } from './components/hello-world';
+import { store } from './store';
 
-const Index = () => {
+import Hello from './containers/helloWorld';
 
-  return (
-    <div>
-      <HelloWorld />
-    </div>
-  );
-};
-
-ReactDOM.render(<Index />, document.getElementById('index'));
+ReactDOM.render(
+  <Provider store={store}>
+    <HelloWorld />
+    <div>---------------------</div>
+    <Hello />
+  </Provider>,
+  document.getElementById('index')
+);
