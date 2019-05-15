@@ -9,7 +9,11 @@ import { Switch, Router, Route, Link, browserHistory } from 'react-router-dom';
 import Hello from './containers/hello-world';
 import AsyncComponentTest from './containers/async-container-test';
 
-// import createHistory from 'history/createBrowserHistory';
+import { PrivateRoute } from './components/private-route';
+import { HomePage } from './components/home-page';
+import { LoginPage } from './components/login-page';
+
+import createHistory from 'history/createBrowserHistory';
 
 const C1 = () => {
   console.log('render c1')
@@ -47,7 +51,7 @@ const C3 = () => {
 }
 
 
-// export const history = createHistory();
+export const history = createHistory();
 
 // ReactDOM.render(
 //   <div>
@@ -71,6 +75,11 @@ const C3 = () => {
 ReactDOM.render(
   <Provider store={store}>
     <AsyncComponentTest />
+    <div>---------------------1</div>
+    <Router history={history}>
+      <PrivateRoute exact path="/home" component={HomePage} />
+      <Route path="/login" component={LoginPage} />
+    </Router>
     <div>---------------------1</div>
     <HelloWorld />
     <div>---------------------2</div>

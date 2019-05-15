@@ -1,4 +1,4 @@
-import { request } from '../api/hello';
+import { request } from '../services/hello';
 import {
   ACTION_ONE,
   CONT2_LOADING,
