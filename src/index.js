@@ -10,6 +10,7 @@ import Hello from './containers/hello-world';
 import AsyncComponentTest from './containers/async-container-test';
 
 import { PrivateRoute } from './components/private-route';
+import { PublicOnlyRoute } from './components/public-only-route';
 import { HomePage } from './components/home-page';
 import { LoginPage } from './components/login-page';
 
@@ -78,7 +79,7 @@ ReactDOM.render(
     <div>---------------------1</div>
     <Router history={history}>
       <PrivateRoute exact path="/home" component={HomePage} />
-      <Route path="/login" component={LoginPage} />
+      <PublicOnlyRoute path="/login" component={LoginPage} />
     </Router>
     <div>---------------------1</div>
     <HelloWorld />
