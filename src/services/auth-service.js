@@ -1,3 +1,4 @@
+import { LOGGED_USER_KEY } from '../constants/common';
 
 export const authService = {
   login,
@@ -7,19 +8,26 @@ export const authService = {
 };
 
 function login(data) {
-
+  localStorage.setItem(LOGGED_USER_KEY, JSON.stringify(data));
 }
 
 function logout() {
-
+  localStorage.removeItem(LOGGED_USER_KEY);
 }
 
 function isLoggedIn() {
-  console.log('is logged in')
+  const userData = getLoggedUserData();
+  let logged = null !== userData;
 
-  return true;
+  return logged;
 }
 
 function getLoggedUserData() {
+  let data = null;
 
+  try {
+    data = JSON.parse(localStorage.getItem(LOGGED_USER_KEY));
+  } catch(e) { }
+
+  return data;
 }
