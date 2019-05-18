@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { HelloWorld } from './components/hello-world';
 import { store } from './store';
 
-import { Switch, Router, Route, Link, browserHistory } from 'react-router-dom';
+import { Switch, Router, Route, Redirect, Link, browserHistory } from 'react-router-dom';
 
 import Hello from './containers/hello-world';
 import AsyncComponentTest from './containers/async-container-test';
@@ -78,8 +78,11 @@ ReactDOM.render(
     <AsyncComponentTest />
     <div>---------------------1</div>
     <Router history={history}>
-      <PrivateRoute exact path="/home" component={HomePage} />
-      <PublicOnlyRoute path="/login" component={LoginPage} />
+      <Switch>
+        <PrivateRoute exact path="/home" component={HomePage} />
+        <PublicOnlyRoute path="/login" component={LoginPage} />
+        <Route render={() => (<Redirect to="/home" />)}/>
+      </Switch>
     </Router>
     <div>---------------------1</div>
     <HelloWorld />
