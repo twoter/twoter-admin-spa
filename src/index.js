@@ -14,7 +14,11 @@ import { PublicOnlyRoute } from './components/public-only-route';
 import { HomePage } from './components/home-page';
 import { LoginPage } from './components/login-page';
 
+import { SideBarPage } from './components/side-bar-page';
+
 import createHistory from 'history/createBrowserHistory';
+
+import './index.css';
 
 const C1 = () => {
   console.log('render c1')
@@ -73,21 +77,26 @@ export const history = createHistory();
 //   document.getElementById('index')
 // );
 
+const DemoPage = () => (
+  <div>
+    ..DemoPage..
+    <div>-----------------------------------</div>
+    <AsyncComponentTest />
+    <div>-----------------------------------</div>
+    <HelloWorld />
+    <div>-----------------------------------</div>
+  </div>
+)
+
 ReactDOM.render(
   <Provider store={store}>
-    <AsyncComponentTest />
-    <div>---------------------1</div>
     <Router history={history}>
       <Switch>
-        <PrivateRoute exact path="/home" component={HomePage} />
+        <PrivateRoute exact path="/home" component={SideBarPage} contentComponent={DemoPage} />
         <PublicOnlyRoute path="/login" component={LoginPage} />
         <Route render={() => (<Redirect to="/home" />)}/>
       </Switch>
     </Router>
-    <div>---------------------1</div>
-    <HelloWorld />
-    <div>---------------------2</div>
-    <Hello />
   </Provider>,
   document.getElementById('index')
 );
