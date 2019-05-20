@@ -1,22 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { NavLink } from 'react-router-dom';
 
-const style = {
-  width: '250px',
-  height: '100%',
-  // border: '1px solid red',
-  backgroundColor: '#000',
-  position: 'fixed',
-  top: 0,
-  left: 0
-}
+const routes = [
+  {
+    path: '/home',
+    name: 'Dashboard'
+  },
+  {
+    path: '/users',
+    name: 'Users'
+  },
+  {
+    path: '/admin-users',
+    name: 'Admin Users'
+  }
+];
 
 class SideBar extends React.Component {
 
   render() {
+    const links = routes.map((route) => (
+      <li>
+        <NavLink to={route.path} activeClassName="current">{route.name}</NavLink>
+      </li>
+    ));
+
     return (
-      <div style={style}>
-        
+      <div className="side-bar-cont">
+        <ul>
+          {links}
+        </ul>
       </div>
     )
   }

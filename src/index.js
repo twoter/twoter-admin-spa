@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HelloWorld } from './components/hello-world';
-import { store } from './store';
+import { store, history } from './store';
 
-import { Switch, Router, Route, Redirect, Link, browserHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter, Link, browserHistory } from 'react-router-dom';
 
 import Hello from './containers/hello-world';
 import AsyncComponentTest from './containers/async-container-test';
@@ -16,9 +16,12 @@ import { LoginPage } from './components/login-page';
 
 import { SideBarPage } from './components/side-bar-page';
 
-import createHistory from 'history/createBrowserHistory';
-
 import './index.css';
+
+import { ConnectedRouter } from 'react-router-redux';
+
+// import createHistory from 'history/createBrowserHistory';
+// const history = createHistory();
 
 const C1 = () => {
   console.log('render c1')
@@ -55,9 +58,6 @@ const C3 = () => {
   )
 }
 
-
-export const history = createHistory();
-
 // ReactDOM.render(
 //   <div>
 //     <Router history={history}>
@@ -88,15 +88,23 @@ const DemoPage = () => (
   </div>
 )
 
-ReactDOM.render(
+// console.log('----------------1')
+// console.log(ConnectedRouter)
+// console.log(store)
+// console.log('----------------1')
+
+const c = withRouter(props => <SideBarPage {...props}/>);
+
+ReactDOM.render((
   <Provider store={store}>
-    <Router history={history}>
+    <ConnectedRouter history={history}>
       <Switch>
-        <PrivateRoute exact path="/home" component={SideBarPage} contentComponent={DemoPage} />
+        <PrivateRoute exact path="/home" component={c} contentComponent={DemoPage} />
+        {/* <PrivateRoute exact path="/home" component={SideBarPage} contentComponent={DemoPage} /> */}
         <PublicOnlyRoute path="/login" component={LoginPage} />
         <Route render={() => (<Redirect to="/home" />)}/>
       </Switch>
-    </Router>
-  </Provider>,
+    </ConnectedRouter>
+  </Provider>),
   document.getElementById('index')
 );

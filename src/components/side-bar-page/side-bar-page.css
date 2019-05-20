@@ -1,3 +1,11 @@
-* {
-  color: green;
+.main-page-cont {
+  height: 100%;
+  margin-left: 250px;
+  background-color: yellow;
+  top: 0;
+  left: 0;
+}
+
+.main-page-cont .main-cont {
+  padding: 10px;
 }
