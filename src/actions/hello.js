@@ -10,13 +10,13 @@ export const sayHello = (message) => {
     type: ACTION_ONE,
     payload: { message }
   };
-}
+};
 
 export const asyncAction = () => {
   return (dispatch) => {
     dispatch({
       type: CONT2_LOADING,
-    })
+    });
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -30,5 +30,5 @@ export const asyncAction = () => {
           payload: data
         });
       });
-  }
-}
+  };
+};

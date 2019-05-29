@@ -7,7 +7,7 @@ class HelloWorld extends React.Component {
 
     return (
       <div>HelloWorld Component</div>
-    )
+    );
   }
 
 }

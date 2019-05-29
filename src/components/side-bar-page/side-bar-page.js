@@ -7,8 +7,8 @@ class SideBarPage extends React.Component {
   render() {
     const { contentComponent: Component } = this.props;
 
-    console.log('---', window.location.pathname)
-    console.log('---', this.props.location.pathname)
+    console.log('---', window.location.pathname);
+    console.log('---', this.props.location.pathname);
 
     return (
       <div>
@@ -20,7 +20,7 @@ class SideBarPage extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
 }

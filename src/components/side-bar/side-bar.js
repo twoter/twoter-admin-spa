@@ -32,7 +32,7 @@ class SideBar extends React.Component {
           {links}
         </ul>
       </div>
-    )
+    );
   }
 
 }

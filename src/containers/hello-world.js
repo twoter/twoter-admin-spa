@@ -8,8 +8,8 @@ const HelloWorld = ({ onClick, message }) => {
       <h1>{message}</h1>
       <button onClick={onClick}>Click</button>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => ({
   message: state.hello.message

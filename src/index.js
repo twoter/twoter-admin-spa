@@ -24,16 +24,16 @@ import { ConnectedRouter } from 'react-router-redux';
 // const history = createHistory();
 
 const C1 = () => {
-  console.log('render c1')
+  console.log('render c1');
   return (
     <div style={{ width: '300px', height: '100px', border: '1px solid red', padding: '10px' }}>
       C1
     </div>
-  )
-}
+  );
+};
 
 const C2 = () => {
-  console.log('render c2')
+  console.log('render c2');
   return (
     <div style={{ width: '300px', height: '100px', border: '1px solid green', padding: '10px' }}>
       C2
@@ -42,21 +42,21 @@ const C2 = () => {
           <li><Link to={'/about/xx'} className="nav-link"> c2->1 </Link></li>
         </ul>
         <Switch>
-          <Route path={"/about/xx"} component={C3} />
+          <Route path={'/about/xx'} component={C3} />
         </Switch>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const C3 = () => {
-  console.log('render c3')
+  console.log('render c3');
   return (
     <div style={{ width: '300px', height: '100px', border: '1px solid pink', padding: '10px' }}>
       C3
     </div>
-  )
-}
+  );
+};
 
 // ReactDOM.render(
 //   <div>
@@ -86,7 +86,7 @@ const DemoPage = () => (
     <HelloWorld />
     <div>-----------------------------------</div>
   </div>
-)
+);
 
 // console.log('----------------1')
 // console.log(ConnectedRouter)
@@ -106,5 +106,5 @@ ReactDOM.render((
       </Switch>
     </ConnectedRouter>
   </Provider>),
-  document.getElementById('index')
+document.getElementById('index')
 );

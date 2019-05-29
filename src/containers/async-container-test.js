@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onLoad: asyncAction
-}
+};
 
 class AsyncComponentTest extends React.Component {
 
@@ -18,8 +18,8 @@ class AsyncComponentTest extends React.Component {
   }
 
   render() {
-    console.log('AsyncComponentTest render')
-    console.log(JSON.stringify(this.props, null, 2))
+    console.log('AsyncComponentTest render');
+    console.log(JSON.stringify(this.props, null, 2));
     return (
       <div>
         <div>------------AsyncComponentTest-begining---</div>
@@ -28,7 +28,7 @@ class AsyncComponentTest extends React.Component {
 
         <div>------------AsyncComponentTest-end---</div>
       </div>
-    )
+    );
   }
 }
 

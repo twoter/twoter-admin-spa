@@ -7,10 +7,10 @@ export const PublicOnlyRoute = ({ component: Component, ...rest }) => (
     !authService.isLoggedIn()
       ? <Component {...props} />
       : <Redirect to={{
-          pathname: '/home',
-          state: {
-            from: props.location
-          }
-        }} />
+        pathname: '/home',
+        state: {
+          from: props.location
+        }
+      }} />
   )} />
 );

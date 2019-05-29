@@ -43,9 +43,9 @@ class LoginPage extends React.Component {
       const userData = {
         username,
         name: 'zelivar'
-      }
+      };
 
-      authService.login(userData)
+      authService.login(userData);
     }, 2000);
   }
 
@@ -80,7 +80,7 @@ class LoginPage extends React.Component {
           <button disabled={loading}>login</button>
         </form>
       </div>
-    )
+    );
   }
 
   isUsernameValid() {

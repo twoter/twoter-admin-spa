@@ -7,10 +7,10 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
     authService.isLoggedIn()
       ? <Component contentComponent={rest.contentComponent} {...props} />
       : <Redirect to={{
-          pathname: '/login',
-          state: {
-            from: props.location
-          }
-        }} />
+        pathname: '/login',
+        state: {
+          from: props.location
+        }
+      }} />
   )} />
 );

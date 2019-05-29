@@ -11,4 +11,4 @@ export const request = () => {
     .finally(() => {
       console.log('finally');
     });
-}
+};
