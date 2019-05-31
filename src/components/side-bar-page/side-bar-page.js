@@ -15,8 +15,7 @@ class SideBarPage extends React.Component {
         <SideBar />
         <div className="main-page-cont">
           <div className="main-cont">
-            Main page
-            <Component />
+            <Component {...this.props}/>
           </div>
         </div>
       </div>

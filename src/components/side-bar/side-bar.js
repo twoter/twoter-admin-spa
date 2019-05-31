@@ -12,6 +12,10 @@ const routes = [
     name: 'Users'
   },
   {
+    path: '/updates',
+    name: 'Updates'
+  },
+  {
     path: '/admin-users',
     name: 'Admin Users'
   }
