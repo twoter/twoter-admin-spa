@@ -6,8 +6,13 @@
 }
 
 .update-item .update-actions {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
   margin: 5px;
+}
+
+.update-item:hover .update-actions {
+  display: block;
 }

@@ -11,3 +11,13 @@ h1, h2, h3 {
 .loading-cont {
   padding: 10px;
 }
+
+.action-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.action-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
