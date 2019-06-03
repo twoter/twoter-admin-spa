@@ -1,0 +1,21 @@
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.users-title-cont {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.users-title-cont a {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

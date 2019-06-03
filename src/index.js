@@ -22,6 +22,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { UsersPage } from './components/users-page';
 import { UserUpdatesPage } from './components/user-updates-page';
 import { UpdatesPage } from './components/updates-page';
+import { AdminUsersListingPage } from './components/admin-users-listing-page';
 // import DashboardPage from './components/dashboard-page/dashboard-page';
 
 // import createHistory from 'history/createBrowserHistory';
@@ -107,7 +108,8 @@ ReactDOM.render((
         <PrivateRoute exact path="/users" component={c} contentComponent={UsersPage} />
         <PrivateRoute exact path="/users/:id" component={c} contentComponent={UserUpdatesPage} />
         <PrivateRoute exact path="/updates" component={c} contentComponent={UpdatesPage} />
-        
+        <PrivateRoute exact path="/admin-users" component={c} contentComponent={AdminUsersListingPage} />
+
         <PublicOnlyRoute path="/login" component={LoginPage} />
         <Route render={() => (<Redirect to="/home" />)}/>
       </Switch>
