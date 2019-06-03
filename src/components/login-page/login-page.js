@@ -1,5 +1,6 @@
 import React from 'react';
 import { authService } from '../../services/auth-service';
+import userService from '../../services/userService';
 
 class LoginPage extends React.Component {
 
@@ -37,16 +38,17 @@ class LoginPage extends React.Component {
 
     this.setState({ loading: true });
 
-    setTimeout(() => {
-      this.setState({ loading: false });
+    userService.login(username, password)
+      .then(() => {
+        this.setState({ loading: false });
 
-      const userData = {
-        username,
-        name: 'zelivar'
-      };
+        const userData = {
+          username
+        };
 
-      authService.login(userData);
-    }, 2000);
+        authService.login(userData);
+        this.props.history.push('/');
+      });
   }
 
   render() {

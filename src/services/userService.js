@@ -2,9 +2,18 @@ import usersData from '../../data/users';
 import updatesData from '../../data/updates';
 
 const userService = {
+  login,
   getAll,
   deleteById
 };
+
+function login(username, password) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  });
+}
 
 function getAll() {
   return new Promise((resolve) => {
