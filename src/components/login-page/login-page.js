@@ -1,6 +1,7 @@
 import React from 'react';
 import { authService } from '../../services/auth-service';
 import userService from '../../services/userService';
+import adminUserService from '../../services/adminUserService';
 
 class LoginPage extends React.Component {
 
@@ -38,21 +39,29 @@ class LoginPage extends React.Component {
 
     this.setState({ loading: true });
 
-    userService.login(username, password)
-      .then(() => {
+    adminUserService.login(username, password)
+      .then(({ logged }) => {
         this.setState({ loading: false });
+        if (!logged) {
+          this.setState({ error: 'Invalid username or password.' })
 
-        const userData = {
-          username
-        };
+          return;
+        }
 
-        authService.login(userData);
-        this.props.history.push('/');
+        userService.login(username, password)
+          .then(() => {
+            const userData = {
+              username
+            };
+
+            authService.login(userData);
+            this.props.history.push('/');
+          });
       });
   }
 
   render() {
-    const { username, password, loading, submitted } = this.state;
+    const { username, password, loading, submitted, error } = this.state;
 
     return (
       <div className="login-cont">
@@ -64,7 +73,7 @@ class LoginPage extends React.Component {
             <input id="username" type="text" name="username" value={username} onChange={this.change} disabled={loading} />
             {
               submitted && !this.isUsernameValid() &&
-              <div>Invalid username</div>
+              <div className="error">Invalid username</div>
             }
           </div>
           <div className="item">
@@ -72,9 +81,12 @@ class LoginPage extends React.Component {
             <input id="password" type="password" name="password" value={password} onChange={this.change} disabled={loading} />
             {
               submitted && !this.isPasswordValid() &&
-              <div>Invalid password</div>
+              <div className="error">Invalid password</div>
             }
           </div>
+          {
+            error ? (<div className="item"><div className="error">{error}</div></div>) : ''
+          }
           <div className="item">
             <button disabled={loading}>login</button>
           </div>

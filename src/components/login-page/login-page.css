@@ -21,6 +21,10 @@
   margin: 0;
 }
 
+.login-cont .item .error {
+  color: red;
+}
+
 .login-cont .item button {
   width: 100%;
   text-align: center;
