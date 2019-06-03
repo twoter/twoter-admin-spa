@@ -37,7 +37,7 @@ class UpdatesPage extends React.Component {
       <div>
         <div className="users-page-cont">
           <div className="users-cont">
-            Updates page
+            <h1>List Updates</h1>
             {loading ? (<div>Loading...</div>) : ''}
             {updatesData}
           </div>

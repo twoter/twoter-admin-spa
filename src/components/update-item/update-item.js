@@ -15,7 +15,7 @@ class UpdateItem extends React.Component {
     const { update } = this.props;
 
     return (
-      <div className="user-item">
+      <div className="update-item">
         <div>
           {`${update.user.firstName} ${update.user.lastName}`} <NavLink to={`/users/${update.user.id}`}>@{update.user.username}</NavLink>
         </div>
@@ -25,7 +25,7 @@ class UpdateItem extends React.Component {
         <div>
           Likes {update.likes} Comments {update.comments}
         </div>
-        <div>
+        <div className="update-actions">
           <span onClick={() => this.delete(update.id)}>delete</span>
         </div>
       </div>

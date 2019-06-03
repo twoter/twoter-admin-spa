@@ -1,5 +1,13 @@
-.user-item {
+.update-item {
   padding: 10px;
   border: 1px solid #000;
   margin-bottom: 10px;
+  position: relative;
+}
+
+.update-item .update-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
 }
