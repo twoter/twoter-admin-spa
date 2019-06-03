@@ -4,6 +4,7 @@ import updatesData from '../../data/updates';
 const userService = {
   login,
   getAll,
+  getById,
   deleteById
 };
 
@@ -19,6 +20,23 @@ function getAll() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(usersData);
+    }, 1000);
+  });
+}
+
+function getById(id) {
+  let foundUser = null;
+  for (const user of usersData) {
+    if (id == user.id) {
+      foundUser = user;
+
+      break;
+    }
+  }
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(foundUser);
     }, 1000);
   });
 }

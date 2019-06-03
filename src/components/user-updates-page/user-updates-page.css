@@ -1,0 +1,13 @@
+.user-cont {
+  width: 250px;
+  border: 1px solid #000;
+  float: left;
+}
+
+.user-cont .cont {
+  padding: 10px;
+}
+
+.updates-cont {
+  margin-left: 260px;
+}
