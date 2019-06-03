@@ -1,102 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { HelloWorld } from './components/hello-world';
+import { ConnectedRouter } from 'react-router-redux';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { store, history } from './store';
-
-import { Switch, Route, Redirect, withRouter, Link, browserHistory } from 'react-router-dom';
-
-import Hello from './containers/hello-world';
-import AsyncComponentTest from './containers/async-container-test';
-
 import { PrivateRoute } from './components/private-route';
 import { PublicOnlyRoute } from './components/public-only-route';
 import { DashboardPage } from './components/dashboard-page';
 import { LoginPage } from './components/login-page';
-
 import { SideBarPage } from './components/side-bar-page';
-
-import './index.css';
-
-import { ConnectedRouter } from 'react-router-redux';
 import { UsersPage } from './components/users-page';
 import { UserUpdatesPage } from './components/user-updates-page';
 import { UpdatesPage } from './components/updates-page';
 import { AdminUsersListingPage } from './components/admin-users-listing-page';
-// import DashboardPage from './components/dashboard-page/dashboard-page';
-
-// import createHistory from 'history/createBrowserHistory';
-// const history = createHistory();
-
-const C1 = () => {
-  console.log('render c1');
-  return (
-    <div style={{ width: '300px', height: '100px', border: '1px solid red', padding: '10px' }}>
-      C1
-    </div>
-  );
-};
-
-const C2 = () => {
-  console.log('render c2');
-  return (
-    <div style={{ width: '300px', height: '100px', border: '1px solid green', padding: '10px' }}>
-      C2
-      <div>
-        <ul className="navbar-nav mr-auto">
-          <li><Link to={'/about/xx'} className="nav-link"> c2->1 </Link></li>
-        </ul>
-        <Switch>
-          <Route path={'/about/xx'} component={C3} />
-        </Switch>
-      </div>
-    </div>
-  );
-};
-
-const C3 = () => {
-  console.log('render c3');
-  return (
-    <div style={{ width: '300px', height: '100px', border: '1px solid pink', padding: '10px' }}>
-      C3
-    </div>
-  );
-};
-
-// ReactDOM.render(
-//   <div>
-//     <Router history={history}>
-//     {/* <Router history={browserHistory}> */}
-//       <ul className="navbar-nav mr-auto">
-//         <li><Link to={'/'} className="nav-link"> Home </Link></li>
-//         <li><Link to={'/user'} className="nav-link">Contact</Link></li>
-//         <li><Link to={'/about'} className="nav-link">About</Link></li>
-//       </ul>
-//       <Switch>
-//         <Route path={"/user"} component={C1} />
-//         <Route path={"/about"} component={C2} />
-//       </Switch>
-//     </Router>
-//   </div>
-//   ,
-//   document.getElementById('index')
-// );
-
-const DemoPage = () => (
-  <div>
-    ..DemoPage..
-    <div>-----------------------------------</div>
-    <AsyncComponentTest />
-    <div>-----------------------------------</div>
-    <HelloWorld />
-    <div>-----------------------------------</div>
-  </div>
-);
-
-// console.log('----------------1')
-// console.log(ConnectedRouter)
-// console.log(store)
-// console.log('----------------1')
+import './index.css';
 
 const c = withRouter(props => <SideBarPage {...props}/>);
 

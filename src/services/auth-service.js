@@ -27,7 +27,9 @@ function getLoggedUserData() {
 
   try {
     data = JSON.parse(localStorage.getItem(LOGGED_USER_KEY));
-  } catch(e) { }
+  } catch(e) {
+    // do nothing
+  }
 
   return data;
 }

@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
       .then(({ logged }) => {
         this.setState({ loading: false });
         if (!logged) {
-          this.setState({ error: 'Invalid username or password.' })
+          this.setState({ error: 'Invalid username or password.' });
 
           return;
         }
@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
 
         <form onSubmit={this.submit}>
           <div className="item">
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input id="username" type="text" name="username" value={username} onChange={this.change} disabled={loading} />
             {
               submitted && !this.isUsernameValid() &&
@@ -77,7 +77,7 @@ class LoginPage extends React.Component {
             }
           </div>
           <div className="item">
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input id="password" type="password" name="password" value={password} onChange={this.change} disabled={loading} />
             {
               submitted && !this.isPasswordValid() &&

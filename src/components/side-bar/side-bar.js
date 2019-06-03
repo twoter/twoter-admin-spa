@@ -25,7 +25,7 @@ class SideBar extends React.Component {
 
   render() {
     const links = routes.map((route) => (
-      <li>
+      <li key={route.path}>
         <NavLink to={route.path} activeClassName="current">{route.name}</NavLink>
       </li>
     ));

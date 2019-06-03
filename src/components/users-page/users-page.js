@@ -47,13 +47,15 @@ class UsersPage extends React.Component {
     const tableRows = this.getTableContent();
 
     if (0 === tableRows.length) {
-      return (<div>No users found.</div>)
+      return (<div>No users found.</div>);
     }
 
     return (
       <table className="users-table">
-        {this.getUsersTableHeaders()}
-        {tableRows}
+        <tbody>
+          {this.getUsersTableHeaders()}
+          {tableRows}
+        </tbody>
       </table>
     );
   }
@@ -69,7 +71,7 @@ class UsersPage extends React.Component {
         <th>Joined at</th>
         <th>Actions</th>
       </tr>
-    )
+    );
   }
 
   getTableContent() {

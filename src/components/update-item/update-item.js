@@ -7,7 +7,7 @@ class UpdateItem extends React.Component {
   delete(id) {
     updateService.deleteById(id)
       .then(() => {
-        console.log('deleted!')
+        console.log('deleted!');
       });
   }
 

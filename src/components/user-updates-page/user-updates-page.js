@@ -45,10 +45,10 @@ class UserUpdatesPage extends React.Component {
       userData = (<Loading />);
     } else if (null !== user) {
       userData = (
-      <div className="cont">
-        <div>{user.firstName} {user.lastName}</div>
-        <div>@{user.username}</div>
-      </div>
+        <div className="cont">
+          <div>{user.firstName} {user.lastName}</div>
+          <div>@{user.username}</div>
+        </div>
       );
     } else {
       userData = null;
@@ -61,15 +61,15 @@ class UserUpdatesPage extends React.Component {
     const pageData = (!loadingUser && null === user) ?
       (<div>No user found</div>) :
       (
-      <div>
-        <div className="user-cont">
-          {userData}
+        <div>
+          <div className="user-cont">
+            {userData}
+          </div>
+          <div className="updates-cont">
+            {loadingUpdates ? (<Loading />) : ''}
+            {updatesData}
+          </div>
         </div>
-        <div className="updates-cont">
-          {loadingUpdates ? (<Loading />) : ''}
-          {updatesData}
-        </div>
-      </div>
       );
 
     return (
