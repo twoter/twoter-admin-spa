@@ -55,31 +55,29 @@ class LoginPage extends React.Component {
     const { username, password, loading, submitted } = this.state;
 
     return (
-      <div>
-        <div>LoginPage</div>
+      <div className="login-cont">
+        <h2>LoginPage</h2>
 
         <form onSubmit={this.submit}>
-          <div>
-            <div>Username</div>
-            <div>
-              <input type="text" name="username" value={username} onChange={this.change} disabled={loading} />
-              {
-                submitted && !this.isUsernameValid() &&
-                <div>Invalid username</div>
-              }
-            </div>
+          <div className="item">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" value={username} onChange={this.change} disabled={loading} />
+            {
+              submitted && !this.isUsernameValid() &&
+              <div>Invalid username</div>
+            }
           </div>
-          <div>
-            <div>Password</div>
-            <div>
-              <input type="password" name="password" value={password} onChange={this.change} disabled={loading} />
-              {
-                submitted && !this.isPasswordValid() &&
-                <div>Invalid password</div>
-              }
-            </div>
+          <div className="item">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" value={password} onChange={this.change} disabled={loading} />
+            {
+              submitted && !this.isPasswordValid() &&
+              <div>Invalid password</div>
+            }
           </div>
-          <button disabled={loading}>login</button>
+          <div className="item">
+            <button disabled={loading}>login</button>
+          </div>
         </form>
       </div>
     );
