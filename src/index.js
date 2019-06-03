@@ -104,7 +104,6 @@ ReactDOM.render((
       <Switch>
         <PrivateRoute exact path="/home" component={c} contentComponent={DemoPage} />
         <PrivateRoute exact path="/users" component={c} contentComponent={UsersPage} />
-        <PrivateRoute exact path="/users/:id/updates" component={c} contentComponent={UserUpdatesPage} />
         <PrivateRoute exact path="/users/:id" component={c} contentComponent={UserUpdatesPage} />
         <PrivateRoute exact path="/updates" component={c} contentComponent={UpdatesPage} />
         

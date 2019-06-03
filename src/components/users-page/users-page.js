@@ -20,8 +20,60 @@ class UsersPage extends React.Component {
 
   }
 
+  delete(id) {
+    userService.deleteById(id)
+      .then(() => {
+        this.setState({ users: this.state.users });
+      });
+  }
+
   render() {
-    const { users, loading } = this.state;
+    const { loading } = this.state;
+
+    return (
+      <div>
+        <div className="users-page-cont">
+          <div className="users-cont">
+            <h1>List Users</h1>
+
+            {loading ? (<div className="loading-cont">Loading...</div>) : this.getUsersTable()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  getUsersTable() {
+    const tableRows = this.getTableContent();
+
+    if (0 === tableRows.length) {
+      return (<div>No users found.</div>)
+    }
+
+    return (
+      <table className="users-table">
+        {this.getUsersTableHeaders()}
+        {tableRows}
+      </table>
+    );
+  }
+
+  getUsersTableHeaders() {
+    return (
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Updates</th>
+        <th>Followers</th>
+        <th>Following</th>
+        <th>Joined at</th>
+        <th>Actions</th>
+      </tr>
+    )
+  }
+
+  getTableContent() {
+    const { users } = this.state;
 
     const userComps = [];
     for (const user of users) {
@@ -34,41 +86,15 @@ class UsersPage extends React.Component {
           <td>{user.following}</td>
           <td>{user.createdAt}</td>
           <td>
-            <NavLink to={`/users/${user.id}/updates`} activeClassName="current">updates</NavLink>
+            <span onClick={() => this.delete(user.id)}>delete</span> <NavLink to={`/users/${user.id}`}>view</NavLink>
           </td>
           
         </tr>
       ));
     }
 
-    const usersData = (!loading && 0 === userComps.length) ?
-      (<div>No users found.</div>) :
-      userComps;
-
-    return (
-      <div>
-        <div className="users-page-cont">
-          <div className="users-cont">
-            <h1>List Users</h1>
-            <table className="users-table">
-              <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Updates</th>
-                <th>Followers</th>
-                <th>Following</th>
-                <th>Joined at</th>
-                <th>Actions</th>
-              </tr>
-              {usersData}
-            </table>
-            {loading ? (<div className="loading-cont">Loading...</div>) : ''}
-          </div>
-        </div>
-      </div>
-    );
+    return userComps;
   }
-
 }
 
 export default UsersPage;

@@ -1,3 +1,5 @@
+import usersData from './users';
+
 const updatesData = [
   {
     id: 1,
@@ -24,5 +26,19 @@ const updatesData = [
     }
   }
 ];
+
+for (const update of updatesData) {
+  update.user = getUserById(update.user.id);
+}
+
+function getUserById(id) {
+  for (const user of usersData) {
+    if (id == user.id) {
+      return user;
+    }
+  }
+
+  return null;
+}
 
 export default updatesData;

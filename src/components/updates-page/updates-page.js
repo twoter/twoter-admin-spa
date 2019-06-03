@@ -29,13 +29,17 @@ class UpdatesPage extends React.Component {
       ));
     }
 
+    const updatesData = (!loading && 0 === updateComps.length) ?
+      (<div>No updates found.</div>) :
+      updateComps;
+
     return (
       <div>
         <div className="users-page-cont">
           <div className="users-cont">
             Updates page
             {loading ? (<div>Loading...</div>) : ''}
-            {updateComps}
+            {updatesData}
           </div>
         </div>
       </div>

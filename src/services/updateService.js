@@ -2,7 +2,8 @@ import updatesData from '../../data/updates';
 
 const updateService = {
   getAll,
-  getByUser
+  getByUser,
+  deleteById
 };
 
 function getAll() {
@@ -27,6 +28,23 @@ function getByUser(id) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(updates);
+    }, 1000);
+  });
+}
+
+function deleteById(id) {
+  for (let i = 0; i < updatesData.length; i++) {
+    const update = updatesData[i];
+    if (id == update.id) {
+      updatesData.splice(i, 1);
+
+      break;
+    }
+  }
+ 
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
     }, 1000);
   });
 }

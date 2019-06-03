@@ -1,20 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import updateService from '../../services/updateService';
 
 class UpdateItem extends React.Component {
+
+  delete(id) {
+    updateService.deleteById(id)
+      .then(() => {
+        console.log('deleted!')
+      });
+  }
 
   render() {
     const { update } = this.props;
 
     return (
       <div className="user-item">
-        <div>..user..</div>
+        <div>
+          {`${update.user.firstName} ${update.user.lastName}`} <NavLink to={`/users/${update.user.id}`}>@{update.user.username}</NavLink>
+        </div>
         <div>
           {update.content}
         </div>
-        {/* <div>
-          <NavLink to="/users/updates" activeClassName="current">updates</NavLink>
-        </div> */}
+        <div>
+          Likes {update.likes} Comments {update.comments}
+        </div>
+        <div>
+          <span onClick={() => this.delete(update.id)}>delete</span>
+        </div>
       </div>
     );
   }
