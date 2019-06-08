@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import adminUserService from '../../services/adminUserService';
+import { PostedAgo } from '../posted-ago';
 
 class AdminUsersListingPage extends React.Component {
 
@@ -82,9 +83,9 @@ class AdminUsersListingPage extends React.Component {
         <tr>
           <td>{user.firstName} {user.lastName}</td>
           <td>@{user.username}</td>
-          <td>{user.createdAt}</td>
+          <td><PostedAgo timestamp={user.createdAt}/></td>
           <td>
-            <span onClick={() => this.delete(user.id)}>delete</span>
+            <span className="action-link" onClick={() => this.delete(user.id)}>delete</span>
           </td>
           
         </tr>

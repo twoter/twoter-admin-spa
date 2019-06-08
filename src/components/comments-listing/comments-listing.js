@@ -1,6 +1,7 @@
 import React from 'react';
 import commentService from '../../services/commentService';
 import { COMMENTS_PER_PAGE } from '../../constants/common';
+import { PostedAgo } from '../posted-ago';
 
 class CommentsListing extends React.Component {
 
@@ -58,7 +59,10 @@ class CommentsListing extends React.Component {
     for (const comment of comments) {
       commentsComps.push((
         <div className="comment-item">
-          <div>{comment.user.firstName} {comment.user.lastName} @{comment.user.username}</div>
+          <div>
+            {comment.user.firstName} {comment.user.lastName} @{comment.user.username}
+            <span> - <PostedAgo timestamp={comment.createdAt}/></span>
+          </div>
           <div>{comment.content}</div>
           <div>{comment.likes} likes</div>
         </div>

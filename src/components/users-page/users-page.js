@@ -2,6 +2,19 @@ import React from 'react';
 import userService from '../../services/userService';
 import { UserItem } from '../user-item';
 import { NavLink } from 'react-router-dom';
+import { PostedAgo } from '../posted-ago';
+import { connect } from 'react-redux';
+import { showModal } from '../../actions/modal';
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  onDelete: (onOk) => dispatch(showModal({
+    title: 'Delete user',
+    message: 'Are you sure you want to delete this user?',
+    onOk
+  }))
+});
 
 class UsersPage extends React.Component {
 
@@ -21,6 +34,12 @@ class UsersPage extends React.Component {
   }
 
   delete(id) {
+    const { onDelete } = this.props;
+
+    onDelete(() => this.deleteUser(id));
+  }
+
+  deleteUser(id) {
     userService.deleteById(id)
       .then(() => {
         this.setState({ users: this.state.users });
@@ -86,9 +105,9 @@ class UsersPage extends React.Component {
           <td>{user.updates}</td>
           <td>{user.followers}</td>
           <td>{user.following}</td>
-          <td>{user.createdAt}</td>
+          <td><PostedAgo timestamp={user.createdAt} /></td>
           <td>
-            <span onClick={() => this.delete(user.id)}>delete</span> <NavLink to={`/users/${user.id}`}>view</NavLink>
+            <span className="action-link" onClick={() => this.delete(user.id)}>delete</span> <NavLink className="action-link" to={`/users/${user.id}`}>view</NavLink>
           </td>
           
         </tr>
@@ -99,4 +118,4 @@ class UsersPage extends React.Component {
   }
 }
 
-export default UsersPage;
+export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);

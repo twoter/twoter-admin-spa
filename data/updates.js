@@ -7,7 +7,8 @@ const updatesData = [
     tags: [],
     user: {
       id: 1
-    }
+    },
+    createdAt:1529514315
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ const updatesData = [
     tags: [],
     user: {
       id: 1
-    }
+    },
+    createdAt:1529514315
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ const updatesData = [
     tags: [],
     user: {
       id: 2
-    }
+    },
+    createdAt:1529514315
   }
 ];
 
