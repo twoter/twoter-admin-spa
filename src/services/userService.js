@@ -59,6 +59,8 @@ function deleteById(id) {
   });
 }
 
+export const filterOutUserById = (users, id) => users.filter(user => user.id != id);
+
 function deleteUpdatesForUser(userId) {
   for (let i = 0; i < updatesData.length; ) {
     if (updatesData[i].user && userId == updatesData[i].user.id) {

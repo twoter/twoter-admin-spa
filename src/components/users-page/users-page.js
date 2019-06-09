@@ -5,49 +5,43 @@ import { NavLink } from 'react-router-dom';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
 import { showModal } from '../../actions/modal';
+import { loadUsers, deleteUser } from '../../actions/user';
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = (dispatch) => ({
-  onDelete: (onOk) => dispatch(showModal({
-    title: 'Delete user',
-    message: 'Are you sure you want to delete this user?',
-    onOk
-  }))
+const mapStateToProps = (state) => ({
+  users: state.user.users,
+  loadingUsers: state.user.loadingUsers,
 });
+
+const mapDispatchToProps = {
+  loadUsers,
+  onDelete: deleteUser,
+  deleteUser: (onOk) => (dispatch) => {
+    dispatch(showModal({
+      title: 'Delete user',
+      message: 'Are you sure you want to delete this user?',
+      onOk
+    }))
+  }
+};
 
 class UsersPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      users: [],
-      loading: true
-    };
-
-    userService.getAll()
-      .then(users => {
-        this.setState({ users, loading: false });
-      });
-
+    props.loadUsers();
   }
 
   delete(id) {
-    const { onDelete } = this.props;
+    const { deleteUser, onDelete } = this.props;
 
-    onDelete(() => this.deleteUser(id));
-  }
-
-  deleteUser(id) {
-    userService.deleteById(id)
-      .then(() => {
-        this.setState({ users: this.state.users });
-      });
+    deleteUser(() => {
+      onDelete(id);
+    });
   }
 
   render() {
-    const { loading } = this.state;
+    const { loadingUsers } = this.props;
 
     return (
       <div>
@@ -55,7 +49,7 @@ class UsersPage extends React.Component {
           <div className="users-cont">
             <h1>List Users</h1>
 
-            {loading ? (<div className="loading-cont">Loading...</div>) : this.getUsersTable()}
+            {loadingUsers ? (<div className="loading-cont">Loading...</div>) : this.getUsersTable()}
           </div>
         </div>
       </div>
@@ -94,7 +88,7 @@ class UsersPage extends React.Component {
   }
 
   getTableContent() {
-    const { users } = this.state;
+    const { users } = this.props;
 
     const userComps = [];
     for (const user of users) {
