@@ -1,25 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import updateService from '../../services/updateService';
 import { CommentsListing } from '../comments-listing';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
 import { showModal } from '../../actions/modal';
+import { deleteUpdate } from '../../actions/update';
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  onDelete: (updateId) => dispatch(showModal({
-    title: 'Delete update',
-    message: 'Are you sure you want to delete this update?',
-    onOk() {
-      updateService.deleteById(updateId)
-        .then(() => {
-          console.log('deleted!');
-        });
-    }
-  }))
-});
+const mapDispatchToProps = {
+  onDelete: deleteUpdate,
+  deleteUpdate: (onOk) => (dispatch) => {
+    dispatch(showModal({
+      title: 'Delete update',
+      message: 'Are you sure you want to delete this update?',
+      onOk
+    }))
+  }
+};
 
 class UpdateItem extends React.Component {
 
@@ -32,9 +30,11 @@ class UpdateItem extends React.Component {
   }
 
   delete(id) {
-    const { onDelete } = this.props;
+    const { deleteUpdate, onDelete } = this.props;
 
-    onDelete(id);
+    deleteUpdate(() => {
+      onDelete(id);
+    });
   }
 
   showComments() {

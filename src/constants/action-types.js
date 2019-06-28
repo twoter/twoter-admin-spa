@@ -9,3 +9,8 @@ export const LOADING_USERS = 'LOADING_USERS';
 export const LOADED_USERS = 'LOADED_USERS';
 export const LOAD_USERS = 'LOAD_USERS';
 export const DELETE_USER = 'DELETE_USER';
+
+export const LOADING_UPDATES = 'LOADING_UPDATES';
+export const LOADED_UPDATES = 'LOADED_UPDATES';
+export const LOAD_UPDATES = 'LOAD_UPDATES';
+export const DELETE_UPDATE = 'DELETE_UPDATE';

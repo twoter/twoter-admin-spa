@@ -1,26 +1,28 @@
 import React from 'react';
 import updateService from '../../services/updateService';
 import { UpdateItem } from '../update-item';
+import { connect } from 'react-redux';
+import { loadUpdates } from '../../actions/update';
+
+const mapStateToProps = (state) => ({
+  updates: state.update.updates,
+  loadingUpdates: state.update.loadingUpdates
+});
+
+const mapDispatchToProps = {
+  loadUpdates
+};
 
 class UpdatesPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      updates: [],
-      loading: true
-    };
-
-    updateService.getAll()
-      .then((updates) => {
-        this.setState({ updates, loading: false });
-      });
-
+    props.loadUpdates()
   }
 
   render() {
-    const { updates, loading } = this.state;
+    const { updates, loadingUpdates } = this.props;
 
     const updateComps = [];
     for (const update of updates) {
@@ -29,7 +31,7 @@ class UpdatesPage extends React.Component {
       ));
     }
 
-    const updatesData = (!loading && 0 === updateComps.length) ?
+    const updatesData = (!loadingUpdates && 0 === updateComps.length) ?
       (<div>No updates found.</div>) :
       updateComps;
 
@@ -38,8 +40,7 @@ class UpdatesPage extends React.Component {
         <div className="users-page-cont">
           <div className="users-cont">
             <h1>List Updates</h1>
-            {loading ? (<div>Loading...</div>) : ''}
-            {updatesData}
+            {loadingUpdates ? (<div>Loading...</div>) : updatesData}
           </div>
         </div>
       </div>
@@ -48,4 +49,4 @@ class UpdatesPage extends React.Component {
 
 }
 
-export default UpdatesPage;
+export default connect(mapStateToProps, mapDispatchToProps)(UpdatesPage);
