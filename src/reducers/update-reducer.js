@@ -2,7 +2,8 @@ import {
   LOADED_UPDATES,
   LOAD_UPDATES,
   LOADING_UPDATES,
-  DELETE_UPDATE
+  DELETE_UPDATE,
+  CLEAR_LOADED_UPDATES
 } from '../constants/action-types';
 import { filterOutUserById } from '../services/userService';
 
@@ -27,6 +28,8 @@ export default (state = initialState, action) => {
         loadingUpdates: false,
         updates: action.payload
       });
+    case CLEAR_LOADED_UPDATES:
+      return initialState;
     default:
       return state;
   }

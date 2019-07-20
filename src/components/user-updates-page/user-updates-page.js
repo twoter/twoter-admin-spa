@@ -3,6 +3,18 @@ import updateService from '../../services/updateService';
 import { UpdateItem } from '../update-item';
 import userService from '../../services/userService';
 import Loading from '../loading/loading';
+import { connect } from 'react-redux';
+import { loadUpdatesForUser, clearLoaded } from '../../actions/update';
+
+const mapStateToProps = (state) => ({
+  updates: state.update.updates,
+  loadingUpdates: state.update.loadingUpdates
+});
+
+const mapDispatchToProps = {
+  loadUpdatesForUser,
+  clearLoaded
+};
 
 class UserUpdatesPage extends React.Component {
 
@@ -16,22 +28,19 @@ class UserUpdatesPage extends React.Component {
       loadingUser: true,
       loadingUpdates: true
     };
+    this.props.clearLoaded();
 
     userService.getById(userId)
       .then((user) => {
         this.setState({ user, loadingUser: false });
 
-        if (null !== user) {
-          updateService.getByUser(userId)
-            .then(updates => {
-              this.setState({ updates, loadingUpdates: false });
-            });
-        } 
+        this.props.loadUpdatesForUser(userId);
       });
   }
 
   render() {
-    const { user, updates, loadingUser, loadingUpdates } = this.state;
+    const { user, loadingUser } = this.state;
+    const { updates, loadingUpdates } = this.props;
 
     const updateComps = [];
     for (const update of updates) {
@@ -66,8 +75,7 @@ class UserUpdatesPage extends React.Component {
             {userData}
           </div>
           <div className="updates-cont">
-            {loadingUpdates ? (<Loading />) : ''}
-            {updatesData}
+            {loadingUpdates ? (<div>Loading...</div>) : updatesData}
           </div>
         </div>
       );
@@ -86,4 +94,4 @@ class UserUpdatesPage extends React.Component {
 
 }
 
-export default UserUpdatesPage;
+export default connect(mapStateToProps, mapDispatchToProps)(UserUpdatesPage);
