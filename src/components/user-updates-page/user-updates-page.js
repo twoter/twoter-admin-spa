@@ -75,7 +75,7 @@ class UserUpdatesPage extends React.Component {
             {userData}
           </div>
           <div className="updates-cont">
-            {loadingUpdates ? (<div>Loading...</div>) : updatesData}
+            {(loadingUser || loadingUpdates) ? (<div>Loading...</div>) : updatesData}
           </div>
         </div>
       );
