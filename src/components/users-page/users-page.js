@@ -49,67 +49,53 @@ class UsersPage extends React.Component {
           <div className="users-cont">
             <h1>List Users</h1>
 
-            {loadingUsers ? (<div className="loading-cont">Loading...</div>) : this.getUsersTable()}
+            {loadingUsers ? (<div className="loading-cont">Loading...</div>) : this.getUserItems()}
           </div>
         </div>
       </div>
     );
   }
 
-  getUsersTable() {
-    const tableRows = this.getTableContent();
+  getUserItems() {
+    const tableRows = this.getUserEntries();
 
     if (0 === tableRows.length) {
       return (<div>No users found.</div>);
     }
 
-    return (
-      <table className="users-table">
-        <tbody>
-          {this.getUsersTableHeaders()}
-          {tableRows}
-        </tbody>
-      </table>
-    );
+    return tableRows;
   }
 
-  getUsersTableHeaders() {
-    return (
-      <tr>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Updates</th>
-        <th>Followers</th>
-        <th>Following</th>
-        <th>Joined at</th>
-        <th>Actions</th>
-      </tr>
-    );
-  }
-
-  getTableContent() {
+  getUserEntries() {
     const { users } = this.props;
 
     const userComps = [];
     for (const user of users) {
-      userComps.push((
-        <tr>
-          <td>{user.firstName} {user.lastName}</td>
-          <td>@{user.username}</td>
-          <td>{user.updates}</td>
-          <td>{user.followers}</td>
-          <td>{user.following}</td>
-          <td><PostedAgo timestamp={user.createdAt} /></td>
-          <td>
-            <span className="action-link" onClick={() => this.delete(user.id)}>delete</span> <NavLink className="action-link" to={`/users/${user.id}`}>view</NavLink>
-          </td>
-          
-        </tr>
-      ));
+      userComps.push(this.getUserItem(user));
     }
 
     return userComps;
   }
+
+  getUserItem(user) {
+    const seperator = '-' // '•';
+    const userDisplayName = `${user.firstName} ${user.lastName} @${user.username}`;
+
+    return (
+      <div className="user-item">
+        <div className="names-cont">
+          <NavLink className="action-link" to={`/users/${user.id}`}>{userDisplayName}</NavLink> {seperator} joined at <PostedAgo timestamp={user.createdAt} />
+        </div>
+        <div>
+          <span>{user.updates} updates</span> {seperator} <span>{user.followers} followers</span> {seperator} <span>{user.following} following</span>
+        </div>
+        <div className="user-actions">
+          <span className="action-link" onClick={() => this.delete(user.id)}>delete</span>
+        </div>
+      </div>
+    )
+  }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
