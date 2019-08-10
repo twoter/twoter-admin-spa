@@ -24,29 +24,20 @@ class UpdatesPage extends React.Component {
   render() {
     const { updates, loadingUpdates } = this.props;
 
-    const updateComps = [];
-    for (const update of updates) {
-      updateComps.push((
-        <UpdateItem update={update} />
-      ));
-    }
-
-    const updatesData = (!loadingUpdates && 0 === updateComps.length) ?
-      (<div>No updates found.</div>) :
-      updateComps;
-
     return (
-      <div>
         <div className="users-page-cont">
           <div className="users-cont">
             <h1>List Updates</h1>
-            {loadingUpdates ? (<div>Loading...</div>) : updatesData}
+            {loadingUpdates ? <div>Loading...</div> : <Updates updates={updates}/>}
           </div>
         </div>
-      </div>
     );
   }
 
+}
+
+const Updates=({updates})=>{
+  return 0 === updates.length ? <div>No updates found.</div> : updates.map(u=><UpdateItem key={u.id} update={u} />)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdatesPage);
