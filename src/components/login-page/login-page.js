@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
     this.setState({ loading: true });
 
     adminUserService.login(username, password)
-      .then(({ logged }) => {
+      .then(({ logged, token }) => {
         this.setState({ loading: false });
         if (!logged) {
           this.setState({ error: 'Invalid username or password.' });
@@ -48,15 +48,8 @@ class LoginPage extends React.Component {
           return;
         }
 
-        userService.login(username, password)
-          .then(() => {
-            const userData = {
-              username
-            };
-
-            authService.login(userData);
-            this.props.history.push('/');
-          });
+        authService.login({ username, token });
+        this.props.history.push('/');
       });
   }
 

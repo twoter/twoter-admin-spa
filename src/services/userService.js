@@ -1,32 +1,23 @@
-import axios from 'axios'
+import apiClient from './api-client';
 
 const userService = {
-  login,
   getAll,
   getById,
   deleteById
 };
 
-function login(username, password) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
-}
-
 function getAll() {
-  return axios.get('http://localhost:3001/admin/api/users')
+  return apiClient.get('admin/api/users')
     .then(response => response.data);
 }
 
 function getById(id) {
-  return axios.get(`http://localhost:3001/admin/api/users/${id}`)
+  return apiClient.get(`admin/api/users/${id}`)
     .then(response => response.data);
 }
 
 function deleteById(id) {
-  return axios.delete(`http://localhost:3001/admin/api/users/${id}`)
+  return apiClient.delete(`admin/api/users/${id}`)
     .then(response => response.data);
 }
 

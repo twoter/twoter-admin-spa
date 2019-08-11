@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from './api-client';
 
 const updateService = {
   getAll,
@@ -7,17 +7,17 @@ const updateService = {
 };
 
 function getAll() {
-  return axios.get('http://localhost:3001/admin/api/updates')
+  return apiClient.get('admin/api/updates')
     .then(response => response.data);
 }
 
 function getByUser(userId) {
-  return axios.get(`http://localhost:3001/admin/api/users/${userId}/updates`)
+  return apiClient.get(`admin/api/users/${userId}/updates`)
     .then(response => response.data);
 }
 
 function deleteById(id) {
-  return axios.delete(`http://localhost:3001/admin/api/updates/${id}`)
+  return apiClient.delete(`admin/api/updates/${id}`)
     .then(response => response.data);
 }
 

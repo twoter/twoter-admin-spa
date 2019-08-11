@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from './api-client';
 
 const commentService = {
   load,
@@ -6,12 +6,12 @@ const commentService = {
 };
 
 function load(updateId, page) {
-  return axios.get(`http://localhost:3001/admin/api/updates/${updateId}/comments`, { params: { page } })
+  return apiClient.get(`admin/api/updates/${updateId}/comments`, { params: { page } })
     .then(response => response.data);
 }
 
 function deleteById(id) {
-  return axios.delete(`http://localhost:3001/admin/api/commentd/${id}`)
+  return apiClient.delete(`admin/api/commentd/${id}`)
     .then(response => response.data);
 }
 

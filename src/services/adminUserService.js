@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from '../services/api-client';
 
 const adminUserService = {
   login,
@@ -8,34 +8,22 @@ const adminUserService = {
 };
 
 function login(username, password) {
-  let logged = false;
-  for (const user of adminUsersData) {
-    if (username === user.username && password === user.password) {
-      logged = true;
-
-      break;
-    }
-  }
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ logged });
-    }, 1000);
-  });
+  return apiClient.post('admin/api/login', { username, password })
+    .then(response => response.data);
 }
 
 function getAll() {
-  return axios.get('http://localhost:3001/admin/api/admin-users')
+  return apiClient.get('admin/api/admin-users')
     .then(response => response.data);
 }
 
 function getById(id) {
-  return axios.get(`http://localhost:3001/admin/api/admin-users/${id}`)
+  return apiClient.get(`admin/api/admin-users/${id}`)
     .then(response => response.data);
 }
 
 function deleteById(id) {
-  return axios.delete(`http://localhost:3001/admin/api/admin-users/${id}`)
+  return apiClient.delete(`admin/api/admin-users/${id}`)
     .then(response => response.data);
 }
 
