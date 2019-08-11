@@ -8,4 +8,5 @@ const adminUsersData = [
     "createdAt":1529514315
   }
 ];
+
 module.exports = adminUsersData;
