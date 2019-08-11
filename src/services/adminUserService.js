@@ -1,4 +1,4 @@
-import adminUsersData from '../../data/admin-users';
+import axios from 'axios';
 
 const adminUserService = {
   login,
@@ -25,45 +25,18 @@ function login(username, password) {
 }
 
 function getAll() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(adminUsersData);
-    }, 1000);
-  });
+  return axios.get('http://localhost:3001/admin/api/admin-users')
+    .then(response => response.data);
 }
 
 function getById(id) {
-  let foundUser = null;
-  for (const user of adminUsersData) {
-    if (id == user.id) {
-      foundUser = user;
-
-      break;
-    }
-  }
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(foundUser);
-    }, 1000);
-  });
+  return axios.get(`http://localhost:3001/admin/api/admin-users/${id}`)
+    .then(response => response.data);
 }
 
 function deleteById(id) {
-  for (let i = 0; i < adminUsersData.length; i++) {
-    const user = adminUsersData[i];
-    if (id == user.id) {
-      adminUsersData.splice(i, 1);
-
-      break;
-    }
-  }
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
+  return axios.delete(`http://localhost:3001/admin/api/admin-users/${id}`)
+    .then(response => response.data);
 }
 
 export default adminUserService;

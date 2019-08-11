@@ -1,5 +1,4 @@
-import commentsData from '../../data/comments';
-import { COMMENTS_PER_PAGE } from '../constants/common';
+import axios from 'axios';
 
 const commentService = {
   load,
@@ -7,48 +6,13 @@ const commentService = {
 };
 
 function load(updateId, page) {
-  const updateComments = getCommentsForUpdate(updateId);
-  const comments = [];
-
-  for (let c = 0, i = (page - 1) * COMMENTS_PER_PAGE; c < COMMENTS_PER_PAGE; c++, i++) {
-    if (updateComments[i]) {
-      comments.push(updateComments[i]);
-    }
-  }
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(comments);
-    }, 1000);
-  });
-}
-
-function getCommentsForUpdate(updateId) {
-  const comments = [];
-  for (const comment of commentsData) {
-    if (updateId == comment.updateId) {
-      comments.push(comment);
-    }
-  }
-
-  return comments;
+  return axios.get(`http://localhost:3001/admin/api/updates/${updateId}/comments`, { params: { page } })
+    .then(response => response.data);
 }
 
 function deleteById(id) {
-  for (let i = 0; i < commentsData.length; i++) {
-    const comment = commentsData[i];
-    if (id == comment.id) {
-      commentsData.splice(i, 1);
-
-      break;
-    }
-  }
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
+  return axios.delete(`http://localhost:3001/admin/api/commentd/${id}`)
+    .then(response => response.data);
 }
 
 export default commentService;

@@ -1,3 +1,3 @@
 
 export const LOGGED_USER_KEY = 'logged_user';
-export const COMMENTS_PER_PAGE = 1;
+export const COMMENTS_PER_PAGE = 7;
