@@ -82,7 +82,7 @@ class UsersPage extends React.Component {
     const userDisplayName = `${user.firstName} ${user.lastName} @${user.username}`;
 
     return (
-      <div className="user-item">
+      <div key={user.id} className="user-item">
         <div className="names-cont">
           <NavLink className="action-link" to={`/users/${user.id}`}>{userDisplayName}</NavLink> {seperator} joined at <PostedAgo timestamp={user.createdAt} />
         </div>

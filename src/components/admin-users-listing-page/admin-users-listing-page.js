@@ -80,7 +80,7 @@ class AdminUsersListingPage extends React.Component {
     const userComps = [];
     for (const user of users) {
       userComps.push((
-        <tr>
+        <tr key={user.id}>
           <td>{user.firstName} {user.lastName}</td>
           <td>@{user.username}</td>
           <td><PostedAgo timestamp={user.createdAt}/></td>

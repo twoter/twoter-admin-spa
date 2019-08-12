@@ -45,7 +45,7 @@ class UserUpdatesPage extends React.Component {
     const updateComps = [];
     for (const update of updates) {
       updateComps.push((
-        <UpdateItem update={update} />
+        <UpdateItem key={update.id} update={update} />
       ));
     }
 
@@ -81,12 +81,10 @@ class UserUpdatesPage extends React.Component {
       );
 
     return (
-      <div>
-        <div className="user-updates-page-cont">
-          <div className="user-updates-cont">
-            <h1>View user updates</h1>
-            {pageData}
-          </div>
+      <div className="user-updates-page-cont">
+        <div className="user-updates-cont">
+          <h1>View user updates</h1>
+          {pageData}
         </div>
       </div>
     );
