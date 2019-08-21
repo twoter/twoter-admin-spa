@@ -88,7 +88,6 @@ function generateComments(updatedId, count = 1) {
 }
 
 function getUpdate(updateId) {
-  console.log('updates:', updates)
   const found = updates.filter((update) => update.id == updateId);
 
   return found.length > 0 ? found[0] : null;

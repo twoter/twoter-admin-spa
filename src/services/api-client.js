@@ -12,6 +12,15 @@ axios.interceptors.request.use(function (config) {
   return config;
 });
 
+axios.interceptors.response.use((response) => response, (error) => {
+  if (401 === error.response.status) {
+    localStorage.clear();
+    window.location = '/';
+  }
+
+  return Promise.reject(error);
+});
+
 const apiClient = {
   get: (path, ...params) => axios.get(`${BASE_URL}/${path}`, ...params),
   post: (path, ...params) => axios.post(`${BASE_URL}/${path}`, ...params),
