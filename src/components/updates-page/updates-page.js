@@ -1,8 +1,9 @@
 import React from 'react';
-import updateService from '../../services/updateService';
-import { UpdateItem } from '../update-item';
 import { connect } from 'react-redux';
+import updateService from '../../services/updateService';
 import { loadUpdates } from '../../actions/update';
+
+import ShowUpdates from '../show-updates/show-updates.component';
 
 const mapStateToProps = (state) => ({
   updates: state.update.updates,
@@ -28,16 +29,12 @@ class UpdatesPage extends React.Component {
         <div className="users-page-cont">
           <div className="users-cont">
             <h1>List Updates</h1>
-            {loadingUpdates ? <div>Loading...</div> : <Updates updates={updates}/>}
+            {loadingUpdates ? <div>Loading...</div> : <ShowUpdates updates={updates}/>}
           </div>
         </div>
     );
   }
 
-}
-
-const Updates=({updates})=>{
-  return 0 === updates.length ? <div>No updates found.</div> : updates.map(u=><UpdateItem key={u.id} update={u} />)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdatesPage);
