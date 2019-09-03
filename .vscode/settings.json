@@ -1,0 +1,9 @@
+{
+  "gitmoji.autoCommit": true,
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.gitmojiCommit",
+      "sequence": ["git.stageAll", "extension.gitmojiCommit"]
+    }
+  ]
+}
