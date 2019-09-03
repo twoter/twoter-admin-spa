@@ -1,14 +1,18 @@
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import hello from './reducers/hello-reducer';
-import modal from './reducers/modal-reducer';
-import user from './reducers/user-reducer';
-import update from './reducers/update-reducer';
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
 
-export default combineReducers({
-  hello,
-  modal,
-  user,
-  update,
-  router: routerReducer
-});
+import hello from "./reducers/hello-reducer";
+import modal from "./reducers/modal-reducer";
+import user from "./reducers/user-reducer";
+import update from "./reducers/update-reducer";
+
+const createRootReducer = history =>
+  combineReducers({
+    hello,
+    modal,
+    user,
+    update,
+    router: connectRouter(history)
+  });
+
+export default createRootReducer;
