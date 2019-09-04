@@ -5,12 +5,13 @@ const initialState = {};
 export default (state = initialState, action) => {
   switch (action.type) {
     case SHOW_ALERT_MODAL:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         title: action.payload.title,
         message: action.payload.message,
         showModal: true,
         onOk: action.payload.onOk
-      });
+      };
     case HIDE_ALERT_MODAL:
       return initialState;
     default:
