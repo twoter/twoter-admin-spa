@@ -1,7 +1,7 @@
 import {
   LOADED_UPDATES,
   LOADING_UPDATES,
-  DELETE_UPDATE,
+  DELETE_UPDATE_SUCCESS,
   CLEAR_LOADED_UPDATES
 } from '../constants/action-types';
 import { filterOutUserById } from '../services/userService';
@@ -12,7 +12,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case DELETE_UPDATE:
+    case DELETE_UPDATE_SUCCESS:
       return {
         ...state,
         updates: filterOutUserById(state.updates, action.payload.id)

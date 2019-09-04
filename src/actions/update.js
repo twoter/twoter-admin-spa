@@ -1,19 +1,33 @@
 import updateService from '../services/updateService';
 import {
-  DELETE_UPDATE,
+  DELETE_UPDATE_START,
+  DELETE_UPDATE_SUCCESS,
+  DELETE_UPDATE_FAILURE,
   LOADING_UPDATES,
   LOADED_UPDATES,
   CLEAR_LOADED_UPDATES
 } from '../constants/action-types';
 
+const deleteUpdateStart = () => ({ type: DELETE_UPDATE_START });
+
+const deleteUpdateSuccess = id => ({
+  type: DELETE_UPDATE_SUCCESS,
+  payload: { id }
+});
+
+const deleteUpdateFailure = message => ({
+  type: DELETE_UPDATE_FAILURE,
+  payload: { message }
+});
+
 export const deleteUpdate = id => {
   return dispatch => {
-    return updateService.deleteById(id).then(() => {
-      dispatch({
-        type: DELETE_UPDATE,
-        payload: { id }
-      });
-    });
+    dispatch(deleteUpdateStart());
+
+    updateService
+      .deleteById(id)
+      .then(() => dispatch(deleteUpdateSuccess(id)))
+      .catch(({ message }) => dispatch(deleteUpdateFailure(message)));
   };
 };
 
