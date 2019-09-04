@@ -25,7 +25,9 @@ function logout(req, res) {
 }
 
 function matchCredentials(username, password) {
-  const result = db.getAdminUsers().filter(user => user.username === username && user.password === password);
+  const result = db
+    .getAdminUsers()
+    .filter(user => user.username === username && user.password === password);
 
   if (0 < result.length) {
     return {

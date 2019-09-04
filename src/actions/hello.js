@@ -5,7 +5,7 @@ import {
   CONT2_LOADED
 } from '../constants/action-types';
 
-export const sayHello = (message) => {
+export const sayHello = message => {
   return {
     type: ACTION_ONE,
     payload: { message }
@@ -13,18 +13,18 @@ export const sayHello = (message) => {
 };
 
 export const asyncAction = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
-      type: CONT2_LOADING,
+      type: CONT2_LOADING
     });
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         resolve();
       }, 2000);
     })
       .then(() => request())
-      .then((data) => {
+      .then(data => {
         dispatch({
           type: CONT2_LOADED,
           payload: data

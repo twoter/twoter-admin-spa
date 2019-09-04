@@ -12,7 +12,7 @@ module.exports = {
   deleteUserById,
   deleteUpdateById,
   deleteAdminUserById,
-  getCommentsByUpdateId,
+  getCommentsByUpdateId
 };
 
 function getUsers() {
@@ -34,7 +34,11 @@ function getCommentsByUpdateId(updateId, page = 1) {
   const updateComments = getCommentsForUpdate(updateId);
   const comments = [];
 
-  for (let c = 0, i = (page - 1) * COMMENTS_PER_PAGE; c < COMMENTS_PER_PAGE; c++, i++) {
+  for (
+    let c = 0, i = (page - 1) * COMMENTS_PER_PAGE;
+    c < COMMENTS_PER_PAGE;
+    c++, i++
+  ) {
     if (updateComments[i]) {
       comments.push(updateComments[i]);
     }
@@ -64,7 +68,7 @@ function deleteUserById(id) {
     if (id == user.id) {
       users.splice(i, 1);
       deleteUpdatesForUser(id);
-  
+
       break;
     }
   }

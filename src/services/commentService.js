@@ -6,12 +6,14 @@ const commentService = {
 };
 
 function load(updateId, page) {
-  return apiClient.get(`admin/api/updates/${updateId}/comments`, { params: { page } })
+  return apiClient
+    .get(`admin/api/updates/${updateId}/comments`, { params: { page } })
     .then(response => response.data);
 }
 
 function deleteById(id) {
-  return apiClient.delete(`admin/api/commentd/${id}`)
+  return apiClient
+    .delete(`admin/api/commentd/${id}`)
     .then(response => response.data);
 }
 

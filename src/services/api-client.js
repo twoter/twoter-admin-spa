@@ -3,7 +3,7 @@ import { authService } from '../services/auth-service';
 
 const BASE_URL = 'http://localhost:3001';
 
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use(function(config) {
   const loggedUser = authService.getLoggedUserData();
   if (loggedUser) {
     config.headers['X-AUTH-TOKEN'] = loggedUser.token;
@@ -12,14 +12,17 @@ axios.interceptors.request.use(function (config) {
   return config;
 });
 
-axios.interceptors.response.use((response) => response, (error) => {
-  if (401 === error.response.status) {
-    localStorage.clear();
-    window.location = '/';
-  }
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    if (401 === error.response.status) {
+      localStorage.clear();
+      window.location = '/';
+    }
 
-  return Promise.reject(error);
-});
+    return Promise.reject(error);
+  }
+);
 
 const apiClient = {
   get: (path, ...params) => axios.get(`${BASE_URL}/${path}`, ...params),

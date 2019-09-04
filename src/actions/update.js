@@ -6,52 +6,49 @@ import {
   CLEAR_LOADED_UPDATES
 } from '../constants/action-types';
 
-export const deleteUpdate = (id) => {
-  return (dispatch) => {
-    return updateService.deleteById(id)
-      .then(() => {
-        dispatch({
-          type: DELETE_UPDATE,
-          payload: { id }
-        });
+export const deleteUpdate = id => {
+  return dispatch => {
+    return updateService.deleteById(id).then(() => {
+      dispatch({
+        type: DELETE_UPDATE,
+        payload: { id }
       });
+    });
   };
 };
 
 export const loadUpdates = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
-      type: LOADING_UPDATES,
+      type: LOADING_UPDATES
     });
 
-    return updateService.getAll()
-      .then((updates) => {
-        dispatch({
-          type: LOADED_UPDATES,
-          payload: updates
-        });
+    return updateService.getAll().then(updates => {
+      dispatch({
+        type: LOADED_UPDATES,
+        payload: updates
       });
+    });
   };
 };
 
-export const loadUpdatesForUser = (userId) => {
-  return (dispatch) => {
+export const loadUpdatesForUser = userId => {
+  return dispatch => {
     dispatch({
-      type: LOADING_UPDATES,
+      type: LOADING_UPDATES
     });
 
-    return updateService.getByUser(userId)
-      .then((updates) => {
-        dispatch({
-          type: LOADED_UPDATES,
-          payload: updates
-        });
+    return updateService.getByUser(userId).then(updates => {
+      dispatch({
+        type: LOADED_UPDATES,
+        payload: updates
       });
+    });
   };
 };
 
 export const clearLoaded = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: CLEAR_LOADED_UPDATES
     });

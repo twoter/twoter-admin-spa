@@ -6,7 +6,7 @@ import Loading from '../loading/loading';
 import { connect } from 'react-redux';
 import { loadUpdatesForUser, clearLoaded } from '../../actions/update';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   updates: state.update.updates,
   loadingUpdates: state.update.loadingUpdates
 });
@@ -17,7 +17,6 @@ const mapDispatchToProps = {
 };
 
 class UserUpdatesPage extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -30,12 +29,11 @@ class UserUpdatesPage extends React.Component {
     };
     this.props.clearLoaded();
 
-    userService.getById(userId)
-      .then((user) => {
-        this.setState({ user, loadingUser: false });
+    userService.getById(userId).then(user => {
+      this.setState({ user, loadingUser: false });
 
-        this.props.loadUpdatesForUser(userId);
-      });
+      this.props.loadUpdatesForUser(userId);
+    });
   }
 
   render() {
@@ -44,18 +42,18 @@ class UserUpdatesPage extends React.Component {
 
     const updateComps = [];
     for (const update of updates) {
-      updateComps.push((
-        <UpdateItem key={update.id} update={update} />
-      ));
+      updateComps.push(<UpdateItem key={update.id} update={update} />);
     }
 
     let userData;
     if (loadingUser) {
-      userData = (<Loading />);
+      userData = <Loading />;
     } else if (null !== user) {
       userData = (
         <div className="cont">
-          <div>{user.firstName} {user.lastName}</div>
+          <div>
+            {user.firstName} {user.lastName}
+          </div>
           <div>@{user.username}</div>
         </div>
       );
@@ -63,19 +61,25 @@ class UserUpdatesPage extends React.Component {
       userData = null;
     }
 
-    const updatesData = (!loadingUpdates && 0 === updateComps.length) ?
-      (<div>No updates found.</div>) :
-      updateComps;
+    const updatesData =
+      !loadingUpdates && 0 === updateComps.length ? (
+        <div>No updates found.</div>
+      ) : (
+        updateComps
+      );
 
-    const pageData = (!loadingUser && null === user) ?
-      (<div>No user found</div>) :
-      (
+    const pageData =
+      !loadingUser && null === user ? (
+        <div>No user found</div>
+      ) : (
         <div>
-          <div className="user-cont">
-            {userData}
-          </div>
+          <div className="user-cont">{userData}</div>
           <div className="updates-cont">
-            {(loadingUser || loadingUpdates) ? (<div>Loading...</div>) : updatesData}
+            {loadingUser || loadingUpdates ? (
+              <div>Loading...</div>
+            ) : (
+              updatesData
+            )}
           </div>
         </div>
       );
@@ -89,7 +93,9 @@ class UserUpdatesPage extends React.Component {
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserUpdatesPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserUpdatesPage);

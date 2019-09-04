@@ -4,7 +4,6 @@ import userService from '../../services/userService';
 import adminUserService from '../../services/adminUserService';
 
 class LoginPage extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -39,18 +38,17 @@ class LoginPage extends React.Component {
 
     this.setState({ loading: true });
 
-    adminUserService.login(username, password)
-      .then(({ logged, token }) => {
-        this.setState({ loading: false });
-        if (!logged) {
-          this.setState({ error: 'Invalid username or password.' });
+    adminUserService.login(username, password).then(({ logged, token }) => {
+      this.setState({ loading: false });
+      if (!logged) {
+        this.setState({ error: 'Invalid username or password.' });
 
-          return;
-        }
+        return;
+      }
 
-        authService.login({ username, token });
-        this.props.history.push('/');
-      });
+      authService.login({ username, token });
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -63,23 +61,39 @@ class LoginPage extends React.Component {
         <form onSubmit={this.submit}>
           <div className="item">
             <label htmlFor="username">Username</label>
-            <input id="username" type="text" name="username" value={username} onChange={this.change} disabled={loading} />
-            {
-              submitted && !this.isUsernameValid() &&
+            <input
+              id="username"
+              type="text"
+              name="username"
+              value={username}
+              onChange={this.change}
+              disabled={loading}
+            />
+            {submitted && !this.isUsernameValid() && (
               <div className="error">Invalid username</div>
-            }
+            )}
           </div>
           <div className="item">
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" name="password" value={password} onChange={this.change} disabled={loading} />
-            {
-              submitted && !this.isPasswordValid() &&
+            <input
+              id="password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.change}
+              disabled={loading}
+            />
+            {submitted && !this.isPasswordValid() && (
               <div className="error">Invalid password</div>
-            }
+            )}
           </div>
-          {
-            error ? (<div className="item"><div className="error">{error}</div></div>) : ''
-          }
+          {error ? (
+            <div className="item">
+              <div className="error">{error}</div>
+            </div>
+          ) : (
+            ''
+          )}
           <div className="item">
             <button disabled={loading}>login</button>
           </div>
@@ -99,7 +113,6 @@ class LoginPage extends React.Component {
 
     return '' !== password.trim();
   }
-
 }
 
 export default LoginPage;

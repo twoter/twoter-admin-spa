@@ -5,7 +5,7 @@ import { loadUpdates } from '../../actions/update';
 
 import ShowUpdates from '../show-updates/show-updates.component';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   updates: state.update.updates,
   loadingUpdates: state.update.loadingUpdates
 });
@@ -15,7 +15,6 @@ const mapDispatchToProps = {
 };
 
 class UpdatesPage extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -29,12 +28,18 @@ class UpdatesPage extends React.Component {
       <div className="users-page-cont">
         <div className="users-cont">
           <h1>List Updates</h1>
-          {loadingUpdates ? <div>Loading...</div> : <ShowUpdates updates={updates}/>}
+          {loadingUpdates ? (
+            <div>Loading...</div>
+          ) : (
+            <ShowUpdates updates={updates} />
+          )}
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdatesPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UpdatesPage);

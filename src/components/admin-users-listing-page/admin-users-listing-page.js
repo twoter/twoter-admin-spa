@@ -4,7 +4,6 @@ import adminUserService from '../../services/adminUserService';
 import { PostedAgo } from '../posted-ago';
 
 class AdminUsersListingPage extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -13,18 +12,15 @@ class AdminUsersListingPage extends React.Component {
       loading: true
     };
 
-    adminUserService.getAll()
-      .then(users => {
-        this.setState({ users, loading: false });
-      });
-
+    adminUserService.getAll().then(users => {
+      this.setState({ users, loading: false });
+    });
   }
 
   delete(id) {
-    adminUserService.deleteById(id)
-      .then(() => {
-        this.setState({ users: this.state.users });
-      });
+    adminUserService.deleteById(id).then(() => {
+      this.setState({ users: this.state.users });
+    });
   }
 
   render() {
@@ -39,7 +35,11 @@ class AdminUsersListingPage extends React.Component {
 
               <NavLink to="/admin-users/new">new</NavLink>
             </div>
-            {loading ? (<div className="loading-cont">Loading...</div>) : this.getUsersTable()}
+            {loading ? (
+              <div className="loading-cont">Loading...</div>
+            ) : (
+              this.getUsersTable()
+            )}
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ class AdminUsersListingPage extends React.Component {
     const tableRows = this.getTableContent();
 
     if (0 === tableRows.length) {
-      return (<div>No users found.</div>);
+      return <div>No users found.</div>;
     }
 
     return (
@@ -79,17 +79,22 @@ class AdminUsersListingPage extends React.Component {
 
     const userComps = [];
     for (const user of users) {
-      userComps.push((
+      userComps.push(
         <tr key={user.id}>
-          <td>{user.firstName} {user.lastName}</td>
-          <td>@{user.username}</td>
-          <td><PostedAgo timestamp={user.createdAt}/></td>
           <td>
-            <span className="action-link" onClick={() => this.delete(user.id)}>delete</span>
+            {user.firstName} {user.lastName}
           </td>
-          
+          <td>@{user.username}</td>
+          <td>
+            <PostedAgo timestamp={user.createdAt} />
+          </td>
+          <td>
+            <span className="action-link" onClick={() => this.delete(user.id)}>
+              delete
+            </span>
+          </td>
         </tr>
-      ));
+      );
     }
 
     return userComps;

@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 export const request = () => {
-  return axios.get('https://jsonplaceholder.typicode.com/todos/1')
-    .then((response) => {
+  return axios
+    .get('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => {
       return response.data;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     })
     .finally(() => {

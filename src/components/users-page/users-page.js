@@ -7,25 +7,26 @@ import { connect } from 'react-redux';
 import { showModal } from '../../actions/modal';
 import { loadUsers, deleteUser } from '../../actions/user';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   users: state.user.users,
-  loadingUsers: state.user.loadingUsers,
+  loadingUsers: state.user.loadingUsers
 });
 
 const mapDispatchToProps = {
   loadUsers,
   onDelete: deleteUser,
-  deleteUser: (onOk) => (dispatch) => {
-    dispatch(showModal({
-      title: 'Delete user',
-      message: 'Are you sure you want to delete this user?',
-      onOk
-    }));
+  deleteUser: onOk => dispatch => {
+    dispatch(
+      showModal({
+        title: 'Delete user',
+        message: 'Are you sure you want to delete this user?',
+        onOk
+      })
+    );
   }
 };
 
 class UsersPage extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -49,7 +50,11 @@ class UsersPage extends React.Component {
           <div className="users-cont">
             <h1>List Users</h1>
 
-            {loadingUsers ? (<div className="loading-cont">Loading...</div>) : this.getUserItems()}
+            {loadingUsers ? (
+              <div className="loading-cont">Loading...</div>
+            ) : (
+              this.getUserItems()
+            )}
           </div>
         </div>
       </div>
@@ -60,7 +65,7 @@ class UsersPage extends React.Component {
     const tableRows = this.getUserEntries();
 
     if (0 === tableRows.length) {
-      return (<div>No users found.</div>);
+      return <div>No users found.</div>;
     }
 
     return tableRows;
@@ -84,18 +89,27 @@ class UsersPage extends React.Component {
     return (
       <div key={user.id} className="user-item">
         <div className="names-cont">
-          <NavLink className="action-link" to={`/users/${user.id}`}>{userDisplayName}</NavLink> {seperator} joined at <PostedAgo timestamp={user.createdAt} />
+          <NavLink className="action-link" to={`/users/${user.id}`}>
+            {userDisplayName}
+          </NavLink>{' '}
+          {seperator} joined at <PostedAgo timestamp={user.createdAt} />
         </div>
         <div>
-          <span>{user.updates} updates</span> {seperator} <span>{user.followers} followers</span> {seperator} <span>{user.following} following</span>
+          <span>{user.updates} updates</span> {seperator}{' '}
+          <span>{user.followers} followers</span> {seperator}{' '}
+          <span>{user.following} following</span>
         </div>
         <div className="user-actions">
-          <span className="action-link" onClick={() => this.delete(user.id)}>delete</span>
+          <span className="action-link" onClick={() => this.delete(user.id)}>
+            delete
+          </span>
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UsersPage);

@@ -22,23 +22,21 @@ const routes = [
 ];
 
 class SideBar extends React.Component {
-
   render() {
-    const links = routes.map((route) => (
+    const links = routes.map(route => (
       <li key={route.path}>
-        <NavLink to={route.path} activeClassName="current">{route.name}</NavLink>
+        <NavLink to={route.path} activeClassName="current">
+          {route.name}
+        </NavLink>
       </li>
     ));
 
     return (
       <div className="side-bar-cont">
-        <ul>
-          {links}
-        </ul>
+        <ul>{links}</ul>
       </div>
     );
   }
-
 }
 
 export default SideBar;

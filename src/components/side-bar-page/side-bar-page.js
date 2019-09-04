@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { SideBar } from '../side-bar';
 
 class SideBarPage extends React.Component {
-
   render() {
     const { contentComponent: Component } = this.props;
 
@@ -15,13 +14,12 @@ class SideBarPage extends React.Component {
         <SideBar />
         <div className="main-page-cont">
           <div className="main-cont">
-            <Component {...this.props}/>
+            <Component {...this.props} />
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default SideBarPage;

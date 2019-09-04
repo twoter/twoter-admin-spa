@@ -7,17 +7,18 @@ const updateService = {
 };
 
 function getAll() {
-  return apiClient.get('admin/api/updates')
-    .then(response => response.data);
+  return apiClient.get('admin/api/updates').then(response => response.data);
 }
 
 function getByUser(userId) {
-  return apiClient.get(`admin/api/users/${userId}/updates`)
+  return apiClient
+    .get(`admin/api/users/${userId}/updates`)
     .then(response => response.data);
 }
 
 function deleteById(id) {
-  return apiClient.delete(`admin/api/updates/${id}`)
+  return apiClient
+    .delete(`admin/api/updates/${id}`)
     .then(response => response.data);
 }
 

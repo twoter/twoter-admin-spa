@@ -1,7 +1,6 @@
 import React from 'react';
 
 class DashboardPage extends React.Component {
-
   render() {
     return (
       <div>
@@ -9,7 +8,6 @@ class DashboardPage extends React.Component {
       </div>
     );
   }
-
 }
 
 export default DashboardPage;

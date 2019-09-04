@@ -10,17 +10,18 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
   onDelete: deleteUpdate,
-  deleteUpdate: (onOk) => (dispatch) => {
-    dispatch(showModal({
-      title: 'Delete update',
-      message: 'Are you sure you want to delete this update?',
-      onOk
-    }));
+  deleteUpdate: onOk => dispatch => {
+    dispatch(
+      showModal({
+        title: 'Delete update',
+        message: 'Are you sure you want to delete this update?',
+        onOk
+      })
+    );
   }
 };
 
 class UpdateItem extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -45,30 +46,47 @@ class UpdateItem extends React.Component {
     const { update } = this.props;
     const { showComments } = this.state;
 
-    const comments = showComments ?
-      (<CommentsListing updateId={update.id} />) :
-      '';
+    const comments = showComments ? (
+      <CommentsListing updateId={update.id} />
+    ) : (
+      ''
+    );
 
     return (
       <div className="update-item">
         <div>
-          {`${update.user.firstName} ${update.user.lastName}`} <NavLink to={`/users/${update.user.id}`}>@{update.user.username}</NavLink>
-          <span> - <PostedAgo timestamp={update.createdAt}/></span>
+          {`${update.user.firstName} ${update.user.lastName}`}{' '}
+          <NavLink to={`/users/${update.user.id}`}>
+            @{update.user.username}
+          </NavLink>
+          <span>
+            {' '}
+            - <PostedAgo timestamp={update.createdAt} />
+          </span>
         </div>
+        <div>{update.content}</div>
         <div>
-          {update.content}
-        </div>
-        <div>
-          Likes {update.likes} <span onClick={() => {this.showComments();}}>Comments {update.comments}</span>
+          Likes {update.likes}{' '}
+          <span
+            onClick={() => {
+              this.showComments();
+            }}
+          >
+            Comments {update.comments}
+          </span>
         </div>
         {comments}
         <div className="update-actions">
-          <span className="action-link" onClick={() => this.delete(update.id)}>delete</span>
+          <span className="action-link" onClick={() => this.delete(update.id)}>
+            delete
+          </span>
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UpdateItem);

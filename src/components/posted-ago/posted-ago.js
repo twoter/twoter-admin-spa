@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class PostedAgo extends React.Component {
-
   render() {
     const { timestamp } = this.props;
 
-    return (
-      <span>{ this.getAgo(timestamp) }</span>
-    );
+    return <span>{this.getAgo(timestamp)}</span>;
   }
 
   getAgo(time) {
@@ -50,7 +47,6 @@ class PostedAgo extends React.Component {
 
     return result;
   }
-
 }
 
 export default PostedAgo;

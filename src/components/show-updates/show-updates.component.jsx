@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { UpdateItem } from "../update-item";
+import { UpdateItem } from '../update-item';
 
 const ShowUpdates = ({ updates }) => {
   return 0 === updates.length ? (

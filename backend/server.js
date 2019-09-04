@@ -14,11 +14,15 @@ app.use(express.urlencoded());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-AUTH-TOKEN');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, X-AUTH-TOKEN'
+  );
 
-  if ('OPTIONS' !== req.method.toLocaleUpperCase() &&
-      '/admin/api/login' !== req.path &&
-      !sessionStore.exists(req.get('X-AUTH-TOKEN'))
+  if (
+    'OPTIONS' !== req.method.toLocaleUpperCase() &&
+    '/admin/api/login' !== req.path &&
+    !sessionStore.exists(req.get('X-AUTH-TOKEN'))
   ) {
     res.status(401);
     res.end();
@@ -47,7 +51,10 @@ app.get('/admin/api/users/:userId/updates', updatesController.getByUser);
 app.delete('/admin/api/updates/:updateId', updatesController.deleteById);
 
 // comment endpoints
-app.get('/admin/api/updates/:updateId/comments', commentsController.getByUpdate);
+app.get(
+  '/admin/api/updates/:updateId/comments',
+  commentsController.getByUpdate
+);
 app.delete('/admin/api/comments/:commentId', commentsController.deleteById);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

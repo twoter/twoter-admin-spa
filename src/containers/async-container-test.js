@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { asyncAction } from '../actions/hello';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   message: state.hello.message,
   title: state.hello.title
 });
@@ -12,7 +12,6 @@ const mapDispatchToProps = {
 };
 
 class AsyncComponentTest extends React.Component {
-
   componentWillMount() {
     this.props.onLoad();
   }
@@ -32,4 +31,7 @@ class AsyncComponentTest extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AsyncComponentTest);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AsyncComponentTest);

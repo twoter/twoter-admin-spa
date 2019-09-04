@@ -11,12 +11,15 @@ const HelloWorld = ({ onClick, message }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   message: state.hello.message
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onClick: () => dispatch(sayHello('hello world'))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HelloWorld);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HelloWorld);
