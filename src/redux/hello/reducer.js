@@ -2,7 +2,7 @@ import {
   ACTION_ONE,
   CONT2_LOADING,
   CONT2_LOADED
-} from '../constants/action-types';
+} from './types';
 
 export default (state = {}, action) => {
   switch (action.type) {

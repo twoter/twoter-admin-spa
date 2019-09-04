@@ -1,9 +1,9 @@
-import { request } from '../services/hello';
+import { request } from '../../services/hello';
 import {
   ACTION_ONE,
   CONT2_LOADING,
   CONT2_LOADED
-} from '../constants/action-types';
+} from './types';
 
 export const sayHello = message => {
   return {
