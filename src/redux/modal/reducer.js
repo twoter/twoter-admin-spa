@@ -1,4 +1,4 @@
-import { SHOW_ALERT_MODAL, HIDE_ALERT_MODAL } from '../constants/action-types';
+import { SHOW_ALERT_MODAL, HIDE_ALERT_MODAL } from './types';
 
 const initialState = {};
 

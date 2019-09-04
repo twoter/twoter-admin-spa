@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { CommentsListing } from '../comments-listing';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
-import { showModal } from '../../actions/modal';
+import { showModal } from '../../redux/modal/actions';
 import { deleteUpdate } from '../../redux/update/actions';
 
 const mapStateToProps = () => ({});

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hideModal } from '../actions/modal';
 import { AlertDialog } from '../components/alert-dialog';
+
+import { hideModal } from '../redux/modal/actions';
 
 const mapStateToProps = state => ({
   title: state.modal.title,
