@@ -1,7 +1,4 @@
 import {
-  SHOW_ALERT_MODAL,
-  HIDE_ALERT_MODAL,
-  LOAD_USERS,
   LOADING_USERS,
   LOADED_USERS,
   DELETE_USER
@@ -15,20 +12,21 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case DELETE_USER:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         users: filterOutUserById(state.users, action.payload.id)
-      });
-    case LOAD_USERS:
-      return state;
+      };
     case LOADING_USERS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loadingUsers: true
-      });
+      };
     case LOADED_USERS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loadingUsers: false,
         users: action.payload
-      });
+      };
     default:
       return state;
   }
