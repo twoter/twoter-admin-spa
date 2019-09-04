@@ -4,7 +4,7 @@ import { CommentsListing } from '../comments-listing';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
 import { showModal } from '../../actions/modal';
-import { deleteUpdate } from '../../actions/update';
+import { deleteUpdate } from '../../redux/update/actions';
 
 const mapStateToProps = () => ({});
 

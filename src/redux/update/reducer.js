@@ -5,8 +5,8 @@ import {
   LOAD_UPDATES_SUCCESS,
   LOAD_UPDATES_FOR_USER_START,
   LOAD_UPDATES_FOR_USER_SUCCESS
-} from '../constants/action-types';
-import { filterOutUserById } from '../services/userService';
+} from './types';
+import { filterOutUserById } from '../../services/userService';
 
 const initialState = {
   updates: []

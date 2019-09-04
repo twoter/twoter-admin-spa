@@ -3,7 +3,11 @@ import { UpdateItem } from '../update-item';
 import userService from '../../services/userService';
 import Loading from '../loading/loading';
 import { connect } from 'react-redux';
-import { loadUpdatesForUser, clearLoadedUpdates } from '../../actions/update';
+
+import {
+  loadUpdatesForUser,
+  clearLoadedUpdates
+} from '../../redux/update/actions';
 
 const mapStateToProps = state => ({
   updates: state.update.updates,

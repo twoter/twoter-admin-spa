@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import updateService from '../../services/updateService';
-import { loadUpdates } from '../../actions/update';
 
 import ShowUpdates from '../show-updates/show-updates.component';
+
+import { loadUpdates } from '../../redux/update/actions';
 
 const mapStateToProps = state => ({
   updates: state.update.updates,

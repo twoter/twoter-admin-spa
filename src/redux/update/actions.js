@@ -1,4 +1,4 @@
-import updateService from '../services/updateService';
+import updateService from '../../services/updateService';
 import {
   DELETE_UPDATE_START,
   DELETE_UPDATE_SUCCESS,
@@ -10,7 +10,7 @@ import {
   LOAD_UPDATES_FOR_USER_SUCCESS,
   LOAD_UPDATES_FOR_USER_FAILURE,
   CLEAR_LOADED_UPDATES
-} from '../constants/action-types';
+} from './types';
 
 const deleteUpdateStart = () => ({ type: DELETE_UPDATE_START });
 
