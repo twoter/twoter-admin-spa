@@ -1,10 +1,9 @@
 import React from 'react';
-import updateService from '../../services/updateService';
 import { UpdateItem } from '../update-item';
 import userService from '../../services/userService';
 import Loading from '../loading/loading';
 import { connect } from 'react-redux';
-import { loadUpdatesForUser, clearLoaded } from '../../actions/update';
+import { loadUpdatesForUser, clearLoadedUpdates } from '../../actions/update';
 
 const mapStateToProps = state => ({
   updates: state.update.updates,
@@ -13,7 +12,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadUpdatesForUser,
-  clearLoaded
+  clearLoadedUpdates
 };
 
 class UserUpdatesPage extends React.Component {
@@ -27,7 +26,7 @@ class UserUpdatesPage extends React.Component {
       loadingUser: true,
       loadingUpdates: true
     };
-    this.props.clearLoaded();
+    this.props.clearLoadedUpdates();
 
     userService.getById(userId).then(user => {
       this.setState({ user, loadingUser: false });

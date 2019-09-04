@@ -3,8 +3,12 @@ import {
   DELETE_UPDATE_START,
   DELETE_UPDATE_SUCCESS,
   DELETE_UPDATE_FAILURE,
-  LOADING_UPDATES,
-  LOADED_UPDATES,
+  LOAD_UPDATES_START,
+  LOAD_UPDATES_SUCCESS,
+  LOAD_UPDATES_FAILURE,
+  LOAD_UPDATES_FOR_USER_START,
+  LOAD_UPDATES_FOR_USER_SUCCESS,
+  LOAD_UPDATES_FOR_USER_FAILURE,
   CLEAR_LOADED_UPDATES
 } from '../constants/action-types';
 
@@ -31,40 +35,50 @@ export const deleteUpdate = id => {
   };
 };
 
+const loadUpdatesStart = () => ({ type: LOAD_UPDATES_START });
+
+const loadUpdatesSuccess = updates => ({
+  type: LOAD_UPDATES_SUCCESS,
+  payload: updates
+});
+
+const loadUpdatesFailure = message => ({
+  type: LOAD_UPDATES_FAILURE,
+  payload: { message }
+});
+
 export const loadUpdates = () => {
   return dispatch => {
-    dispatch({
-      type: LOADING_UPDATES
-    });
+    dispatch(loadUpdatesStart());
 
-    return updateService.getAll().then(updates => {
-      dispatch({
-        type: LOADED_UPDATES,
-        payload: updates
-      });
-    });
+    updateService
+      .getAll()
+      .then(updates => dispatch(loadUpdatesSuccess(updates)))
+      .catch(({ message }) => dispatch(loadUpdatesFailure(message)));
   };
 };
+
+const loadUpdatesForUserStart = () => ({ type: LOAD_UPDATES_FOR_USER_START });
+
+const loadUpdatesForUserSuccess = updates => ({
+  type: LOAD_UPDATES_FOR_USER_SUCCESS,
+  payload: updates
+});
+
+const loadUpdatesForUserFailure = message => ({
+  type: LOAD_UPDATES_FOR_USER_FAILURE,
+  payload: { message }
+});
 
 export const loadUpdatesForUser = userId => {
   return dispatch => {
-    dispatch({
-      type: LOADING_UPDATES
-    });
+    dispatch(loadUpdatesForUserStart());
 
-    return updateService.getByUser(userId).then(updates => {
-      dispatch({
-        type: LOADED_UPDATES,
-        payload: updates
-      });
-    });
+    return updateService
+      .getByUser(userId)
+      .then(updates => dispatch(loadUpdatesForUserSuccess(updates)))
+      .catch(({ message }) => dispatch(loadUpdatesForUserFailure(message)));
   };
 };
 
-export const clearLoaded = () => {
-  return dispatch => {
-    dispatch({
-      type: CLEAR_LOADED_UPDATES
-    });
-  };
-};
+export const clearLoadedUpdates = () => ({ type: CLEAR_LOADED_UPDATES });

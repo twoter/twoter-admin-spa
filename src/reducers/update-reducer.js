@@ -1,8 +1,10 @@
 import {
-  LOADED_UPDATES,
-  LOADING_UPDATES,
   DELETE_UPDATE_SUCCESS,
-  CLEAR_LOADED_UPDATES
+  CLEAR_LOADED_UPDATES,
+  LOAD_UPDATES_START,
+  LOAD_UPDATES_SUCCESS,
+  LOAD_UPDATES_FOR_USER_START,
+  LOAD_UPDATES_FOR_USER_SUCCESS
 } from '../constants/action-types';
 import { filterOutUserById } from '../services/userService';
 
@@ -17,12 +19,14 @@ export default (state = initialState, action) => {
         ...state,
         updates: filterOutUserById(state.updates, action.payload.id)
       };
-    case LOADING_UPDATES:
+    case LOAD_UPDATES_START:
+    case LOAD_UPDATES_FOR_USER_START:
       return {
         ...state,
         loadingUpdates: true
       };
-    case LOADED_UPDATES:
+    case LOAD_UPDATES_SUCCESS:
+    case LOAD_UPDATES_FOR_USER_SUCCESS:
       return {
         ...state,
         loadingUpdates: false,
