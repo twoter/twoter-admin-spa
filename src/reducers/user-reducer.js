@@ -1,7 +1,7 @@
 import {
-  LOADING_USERS,
-  LOADED_USERS,
-  DELETE_USER
+  DELETE_USER_SUCCESS,
+  LOAD_USERS_START,
+  LOAD_USERS_SUCCESS
 } from '../constants/action-types';
 import { filterOutUserById } from '../services/userService';
 
@@ -11,17 +11,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case DELETE_USER:
+    case DELETE_USER_SUCCESS:
       return {
         ...state,
         users: filterOutUserById(state.users, action.payload.id)
       };
-    case LOADING_USERS:
+    case LOAD_USERS_START:
       return {
         ...state,
         loadingUsers: true
       };
-    case LOADED_USERS:
+    case LOAD_USERS_SUCCESS:
       return {
         ...state,
         loadingUsers: false,
