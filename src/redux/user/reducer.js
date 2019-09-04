@@ -1,9 +1,9 @@
+import { filterOutUserById } from '../../services/userService';
 import {
   DELETE_USER_SUCCESS,
   LOAD_USERS_START,
   LOAD_USERS_SUCCESS
-} from '../constants/action-types';
-import { filterOutUserById } from '../services/userService';
+} from './types';
 
 const initialState = {
   users: []

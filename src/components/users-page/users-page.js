@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
 import { showModal } from '../../actions/modal';
-import { loadUsers, deleteUser } from '../../actions/user';
+import { loadUsers, deleteUser } from '../../redux/user/actions';
 
 const mapStateToProps = state => ({
   users: state.user.users,

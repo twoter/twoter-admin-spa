@@ -1,11 +1,11 @@
-import userService from '../services/userService';
+import userService from '../../services/userService';
 import {
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILURE,
   LOAD_USERS_START,
   LOAD_USERS_SUCCESS,
   LOAD_USERS_FAILURE
-} from '../constants/action-types';
+} from './types';
 
 export const deleteUser = id => {
   return dispatch => {
