@@ -3,50 +3,50 @@ const updates = require('./updates');
 
 const commentsData = [
   {
-     "id":1,
-     "content":"c1",
-     "updateId":2,
-     "userId":1,
-     "user":{
-        "id":1,
-        "firstName":"Velizar",
-        "lastName":"Ivanov",
-        "username":"zivanof",
-        "password":null,
-        "followers":0,
-        "following":0,
-        "updates":0,
-        "createdAt":1529514315,
-        "image":null,
-        "followed":false
-     },
-     "imageId":-1,
-     "likes":0,
-     "createdAt":1559652100,
-     "liked":false
+    'id':1,
+    'content':'c1',
+    'updateId':2,
+    'userId':1,
+    'user':{
+      'id':1,
+      'firstName':'Velizar',
+      'lastName':'Ivanov',
+      'username':'zivanof',
+      'password':null,
+      'followers':0,
+      'following':0,
+      'updates':0,
+      'createdAt':1529514315,
+      'image':null,
+      'followed':false
+    },
+    'imageId':-1,
+    'likes':0,
+    'createdAt':1559652100,
+    'liked':false
   },
   {
-     "id":2,
-     "content":"c2",
-     "updateId":2,
-     "userId":1,
-     "user":{
-        "id":1,
-        "firstName":"Velizar",
-        "lastName":"Ivanov",
-        "username":"zivanof",
-        "password":null,
-        "followers":0,
-        "following":0,
-        "updates":0,
-        "createdAt":1529514315,
-        "image":null,
-        "followed":false
-     },
-     "imageId":-1,
-     "likes":0,
-     "createdAt":1559652100,
-     "liked":false
+    'id':2,
+    'content':'c2',
+    'updateId':2,
+    'userId':1,
+    'user':{
+      'id':1,
+      'firstName':'Velizar',
+      'lastName':'Ivanov',
+      'username':'zivanof',
+      'password':null,
+      'followers':0,
+      'following':0,
+      'updates':0,
+      'createdAt':1529514315,
+      'image':null,
+      'followed':false
+    },
+    'imageId':-1,
+    'likes':0,
+    'createdAt':1559652100,
+    'liked':false
   }
 ];
 
@@ -70,15 +70,15 @@ function generateComments(updatedId, count = 1) {
   const result = [];
   for (let i = 0; i < count; i++) {
     const x = {
-      "id":i + 100,
-      "content":`...comment ${i + 1}`,
-      "updateId":updatedId,
-      "userId":user.id,
-      "user":user,
-      "imageId":-1,
-      "likes":0,
-      "createdAt":1559652100 + i,
-      "liked":false
+      'id':i + 100,
+      'content':`...comment ${i + 1}`,
+      'updateId':updatedId,
+      'userId':user.id,
+      'user':user,
+      'imageId':-1,
+      'likes':0,
+      'createdAt':1559652100 + i,
+      'liked':false
     };
 
     result.push(x);

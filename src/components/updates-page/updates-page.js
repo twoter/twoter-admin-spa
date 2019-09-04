@@ -19,19 +19,19 @@ class UpdatesPage extends React.Component {
   constructor(props) {
     super(props);
 
-    props.loadUpdates()
+    props.loadUpdates();
   }
 
   render() {
     const { updates, loadingUpdates } = this.props;
 
     return (
-        <div className="users-page-cont">
-          <div className="users-cont">
-            <h1>List Updates</h1>
-            {loadingUpdates ? <div>Loading...</div> : <ShowUpdates updates={updates}/>}
-          </div>
+      <div className="users-page-cont">
+        <div className="users-cont">
+          <h1>List Updates</h1>
+          {loadingUpdates ? <div>Loading...</div> : <ShowUpdates updates={updates}/>}
         </div>
+      </div>
     );
   }
 

@@ -4,7 +4,7 @@ const sessionStore = require('../session-store');
 module.exports = {
   login,
   logout
-}
+};
 
 function login(req, res) {
   const { username, password } = req.body;
@@ -31,7 +31,7 @@ function matchCredentials(username, password) {
     return {
       id: result[0].id,
       username: result[0].username
-    }
+    };
   }
 
   return null;

@@ -21,7 +21,7 @@ app.use((req, res, next) => {
       !sessionStore.exists(req.get('X-AUTH-TOKEN'))
   ) {
     res.status(401);
-    res.end()
+    res.end();
   } else {
     next();
   }

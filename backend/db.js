@@ -13,7 +13,7 @@ module.exports = {
   deleteUpdateById,
   deleteAdminUserById,
   getCommentsByUpdateId,
-}
+};
 
 function getUsers() {
   return users;

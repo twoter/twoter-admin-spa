@@ -41,7 +41,7 @@ class CommentsListing extends React.Component {
           comments: newComments,
           loading: false,
           page: page + 1
-        }
+        };
         
         if (comments.length < COMMENTS_PER_PAGE) {
           state.canLoadMore = false;
@@ -75,7 +75,7 @@ class CommentsListing extends React.Component {
 
     return (
       <div className="comments-cont">
-        {(!loading && canLoadMore) ? (<div onClick={() => {this.loadComments(updateId)}}>Load previous</div>) : ''}
+        {(!loading && canLoadMore) ? (<div onClick={() => {this.loadComments(updateId);}}>Load previous</div>) : ''}
         {loading ? (<div>Loading...</div>) : ''}
         {commentsData}
       </div>

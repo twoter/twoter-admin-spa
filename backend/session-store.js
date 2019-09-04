@@ -2,7 +2,7 @@ module.exports = {
   exists,
   loginUser,
   logoutUser
-}
+};
 
 const sessionStore = {};
 
@@ -26,7 +26,7 @@ function generateToken() {
   const length = 50;
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   for (let i = 0; i < length; i++ ) {
-     result += characters.charAt(Math.floor(Math.random() * characters.length));
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
 
   return result;

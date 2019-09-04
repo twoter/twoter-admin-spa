@@ -37,7 +37,7 @@ const App = () => {
       <AlertDialog />
     </div>
   );
-}
+};
 
 ReactDOM.render((
   <Provider store={store}>

@@ -20,7 +20,7 @@ const mapDispatchToProps = {
       title: 'Delete user',
       message: 'Are you sure you want to delete this user?',
       onOk
-    }))
+    }));
   }
 };
 
@@ -78,7 +78,7 @@ class UsersPage extends React.Component {
   }
 
   getUserItem(user) {
-    const seperator = '-' // '•';
+    const seperator = '-'; // '•';
     const userDisplayName = `${user.firstName} ${user.lastName} @${user.username}`;
 
     return (
@@ -93,7 +93,7 @@ class UsersPage extends React.Component {
           <span className="action-link" onClick={() => this.delete(user.id)}>delete</span>
         </div>
       </div>
-    )
+    );
   }
 
 }

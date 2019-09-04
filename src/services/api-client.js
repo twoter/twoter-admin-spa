@@ -25,6 +25,6 @@ const apiClient = {
   get: (path, ...params) => axios.get(`${BASE_URL}/${path}`, ...params),
   post: (path, ...params) => axios.post(`${BASE_URL}/${path}`, ...params),
   delete: (path, ...params) => axios.delete(`${BASE_URL}/${path}`, ...params)
-}
+};
 
 export default apiClient;

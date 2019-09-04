@@ -3,11 +3,11 @@ const db = require('../db');
 module.exports = {
   getByUpdate,
   deleteById
-}
+};
 
 function getByUpdate(req, res) {
   updateId = req.params.updateId;
-  page = Number(req.query.page)
+  page = Number(req.query.page);
   comments = db.getCommentsByUpdateId(updateId, page);
   res.json(comments);
 }

@@ -4,7 +4,7 @@ module.exports = {
   getAll,
   getById,
   deleteById
-}
+};
 
 function getAll(req, res) {
   res.json(db.getUsers());

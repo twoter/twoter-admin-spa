@@ -55,5 +55,5 @@ export const clearLoaded = () => {
     dispatch({
       type: CLEAR_LOADED_UPDATES
     });
-  }
-}
+  };
+};

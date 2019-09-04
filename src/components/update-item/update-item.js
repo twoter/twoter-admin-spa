@@ -15,7 +15,7 @@ const mapDispatchToProps = {
       title: 'Delete update',
       message: 'Are you sure you want to delete this update?',
       onOk
-    }))
+    }));
   }
 };
 
@@ -59,7 +59,7 @@ class UpdateItem extends React.Component {
           {update.content}
         </div>
         <div>
-          Likes {update.likes} <span onClick={() => {this.showComments()}}>Comments {update.comments}</span>
+          Likes {update.likes} <span onClick={() => {this.showComments();}}>Comments {update.comments}</span>
         </div>
         {comments}
         <div className="update-actions">
