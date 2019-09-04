@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { store, history } from './store';
+import { store, history } from './redux/store';
 import { PrivateRoute } from './components/private-route';
 import { PublicOnlyRoute } from './components/public-only-route';
 import { DashboardPage } from './components/dashboard-page';
