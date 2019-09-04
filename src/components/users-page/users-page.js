@@ -1,6 +1,4 @@
 import React from 'react';
-import userService from '../../services/userService';
-import { UserItem } from '../user-item';
 import { NavLink } from 'react-router-dom';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { SideBar } from '../side-bar';
 
 class SideBarPage extends React.Component {

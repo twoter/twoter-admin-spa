@@ -1,6 +1,5 @@
 import React from 'react';
 import { authService } from '../../services/auth-service';
-import userService from '../../services/userService';
 import adminUserService from '../../services/adminUserService';
 
 class LoginPage extends React.Component {
