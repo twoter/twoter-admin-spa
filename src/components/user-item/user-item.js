@@ -12,12 +12,14 @@ const UserItem = ({ user, handleDeleteUser }) => {
       <div className="names-cont">
         <NavLink className="action-link" to={`/users/${user.id}`}>
           {displayName}
-        </NavLink>{' '}
+        </NavLink>
         {seperator} joined at <PostedAgo timestamp={user.createdAt} />
       </div>
-      <div>
-        <span>{user.updates} updates</span> {seperator}{' '}
-        <span>{user.followers} followers</span> {seperator}{' '}
+      <div className="user-item-info">
+        <span>{user.updates} updates</span>
+        {seperator}
+        <span>{user.followers} followers</span>
+        {seperator}
         <span>{user.following} following</span>
       </div>
       <div className="user-actions">

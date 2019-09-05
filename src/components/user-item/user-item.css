@@ -7,6 +7,9 @@
 .user-item .names-cont {
   margin-bottom: 5px;
 }
+.names-cont .action-link {
+  padding-right: 0.5em;
+}
 
 .user-item .user-actions {
   display: none;
@@ -18,4 +21,12 @@
 
 .user-item:hover .user-actions {
   display: block;
+}
+
+.user-item-info > span {
+  padding: 0 0.5em;
+}
+
+.user-item-info > span:first-child {
+  padding-left: 0;
 }
