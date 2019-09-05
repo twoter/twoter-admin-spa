@@ -1,69 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { confirmDeleteUser } from '../../redux/modal/actions';
-import { loadUsers, deleteUser } from '../../redux/user/actions';
-import { UserItem } from '../user-item';
+import { createStructuredSelector } from 'reselect';
 
-const mapStateToProps = state => ({
-  users: state.user.users,
-  loadingUsers: state.user.loadingUsers
+import { loadUsers } from '../../redux/user/actions';
+import { getUsers, getIsLoadingUsers } from '../../redux/user/selectors';
+
+import UserItemsContainer from '../../containers/user-items-container';
+
+const UsersPage = ({ loadUsers, users, isLoading }) => {
+  useEffect(() => {
+    loadUsers();
+  }, [loadUsers]);
+
+  return (
+    <div className="users-page-cont">
+      <div className="users-cont">
+        <h1>List Users</h1>
+
+        <UserItemsContainer
+          isEmpty={0 === users.length}
+          isLoading={isLoading}
+          users={users}
+        />
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = createStructuredSelector({
+  users: getUsers,
+  isLoading: getIsLoadingUsers
 });
 
 const mapDispatchToProps = {
-  loadUsers,
-  deleteUser,
-  confirmDeleteUser
+  loadUsers
 };
-
-class UsersPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    props.loadUsers();
-  }
-
-  delete = userId => {
-    const { confirmDeleteUser, deleteUser } = this.props;
-
-    confirmDeleteUser(() => deleteUser(userId));
-  };
-
-  render() {
-    const { loadingUsers } = this.props;
-
-    return (
-      <div className="users-page-cont">
-        <div className="users-cont">
-          <h1>List Users</h1>
-
-          {loadingUsers ? (
-            <div className="loading-cont">Loading...</div>
-          ) : (
-            this.getUserItems()
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  getUserItems() {
-    const tableRows = this.getUserEntries();
-
-    if (0 === tableRows.length) {
-      return <div>No users found.</div>;
-    }
-
-    return tableRows;
-  }
-
-  getUserEntries() {
-    const { users } = this.props;
-
-    return users.map(user => (
-      <UserItem key={user.id} user={user} handleDeleteUser={this.delete} />
-    ));
-  }
-}
 
 export default connect(
   mapStateToProps,
