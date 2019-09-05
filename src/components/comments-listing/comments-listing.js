@@ -7,13 +7,16 @@ class CommentsListing extends React.Component {
   constructor(props) {
     super(props);
 
-    const { updateId } = props;
     this.state = {
       comments: [],
       loading: true,
       page: 1,
       canLoadMore: true
     };
+  }
+
+  componentDidMount() {
+    const { updateId } = this.props;
 
     this.loadComments(updateId);
   }
