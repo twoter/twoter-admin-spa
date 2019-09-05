@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
-import { showModal } from '../../redux/modal/actions';
+import { confirmDeleteUser } from '../../redux/modal/actions';
 import { loadUsers, deleteUser } from '../../redux/user/actions';
 
 const mapStateToProps = state => ({
@@ -12,16 +12,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadUsers,
-  onDelete: deleteUser,
-  deleteUser: onOk => dispatch => {
-    dispatch(
-      showModal({
-        title: 'Delete user',
-        message: 'Are you sure you want to delete this user?',
-        onOk
-      })
-    );
-  }
+  deleteUser,
+  confirmDeleteUser
 };
 
 class UsersPage extends React.Component {
@@ -31,12 +23,10 @@ class UsersPage extends React.Component {
     props.loadUsers();
   }
 
-  delete(id) {
-    const { deleteUser, onDelete } = this.props;
+  delete(userId) {
+    const { confirmDeleteUser, deleteUser } = this.props;
 
-    deleteUser(() => {
-      onDelete(id);
-    });
+    confirmDeleteUser(() => deleteUser(userId));
   }
 
   render() {

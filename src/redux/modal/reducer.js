@@ -1,10 +1,15 @@
-import { SHOW_ALERT_MODAL, HIDE_ALERT_MODAL } from './types';
+import {
+  SHOW_ALERT_MODAL,
+  HIDE_ALERT_MODAL,
+  CONFIRM_DELETE_USER
+} from './types';
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SHOW_ALERT_MODAL:
+    case CONFIRM_DELETE_USER:
       return {
         ...state,
         title: action.payload.title,
