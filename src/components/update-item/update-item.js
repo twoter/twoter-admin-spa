@@ -3,22 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { CommentsListing } from '../comments-listing';
 import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
-import { showModal } from '../../redux/modal/actions';
+import { confirmDeleteUpdate } from '../../redux/modal/actions';
 import { deleteUpdate } from '../../redux/update/actions';
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
-  onDelete: deleteUpdate,
-  deleteUpdate: onOk => dispatch => {
-    dispatch(
-      showModal({
-        title: 'Delete update',
-        message: 'Are you sure you want to delete this update?',
-        onOk
-      })
-    );
-  }
+  deleteUpdate,
+  confirmDeleteUpdate
 };
 
 class UpdateItem extends React.Component {
@@ -31,11 +21,9 @@ class UpdateItem extends React.Component {
   }
 
   delete(id) {
-    const { deleteUpdate, onDelete } = this.props;
+    const { confirmDeleteUpdate, deleteUpdate } = this.props;
 
-    deleteUpdate(() => {
-      onDelete(id);
-    });
+    confirmDeleteUpdate(() => deleteUpdate(id));
   }
 
   showComments() {
@@ -87,6 +75,6 @@ class UpdateItem extends React.Component {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(UpdateItem);
