@@ -4,7 +4,8 @@ import { createStructuredSelector } from 'reselect';
 
 import { loadUpdates } from '../../redux/update/actions';
 import { getUpdates, getIsLoadingUpdates } from '../../redux/update/selectors';
-import ShowUpdatesContainer from '../../containers/show-updates.container';
+
+import ShowUpdatesContainer from '../show-updates/show-updates.container';
 
 const UpdatesPage = ({ loadUpdates, updates, isLoading }) => {
   useEffect(() => {

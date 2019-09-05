@@ -5,7 +5,8 @@ import { createStructuredSelector } from 'reselect';
 import { loadUsers } from '../../redux/user/actions';
 import { getUsers, getIsLoadingUsers } from '../../redux/user/selectors';
 
-import UserItemsContainer from '../../containers/user-items.container';
+import UserItemsContainer from '../users-items/user-items.container';
+
 
 const UsersPage = ({ loadUsers, users, isLoading }) => {
   useEffect(() => {
