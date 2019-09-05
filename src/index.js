@@ -14,7 +14,7 @@ import { UserUpdatesPage } from './components/user-updates-page';
 import { UpdatesPage } from './components/updates-page';
 import { AdminUsersListingPage } from './components/admin-users-listing-page';
 import './index.css';
-import AlertDialog from './components/alert-dialog';
+import { AlertDialog } from './components/alert-dialog';
 
 const c = withRouter(props => <SideBarPage {...props} />);
 

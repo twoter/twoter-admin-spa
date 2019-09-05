@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import { hideModal } from '../redux/modal/actions';
+import { hideModal } from '../../redux/modal/actions';
 
 const AlertDialog = ({ title, message, showModal, onClose, onOk }) => {
   return (
