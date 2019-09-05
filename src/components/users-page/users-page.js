@@ -1,9 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { PostedAgo } from '../posted-ago';
 import { connect } from 'react-redux';
 import { confirmDeleteUser } from '../../redux/modal/actions';
 import { loadUsers, deleteUser } from '../../redux/user/actions';
+import { UserItem } from '../user-item';
 
 const mapStateToProps = state => ({
   users: state.user.users,
@@ -23,27 +22,25 @@ class UsersPage extends React.Component {
     props.loadUsers();
   }
 
-  delete(userId) {
+  delete = userId => {
     const { confirmDeleteUser, deleteUser } = this.props;
 
     confirmDeleteUser(() => deleteUser(userId));
-  }
+  };
 
   render() {
     const { loadingUsers } = this.props;
 
     return (
-      <div>
-        <div className="users-page-cont">
-          <div className="users-cont">
-            <h1>List Users</h1>
+      <div className="users-page-cont">
+        <div className="users-cont">
+          <h1>List Users</h1>
 
-            {loadingUsers ? (
-              <div className="loading-cont">Loading...</div>
-            ) : (
-              this.getUserItems()
-            )}
-          </div>
+          {loadingUsers ? (
+            <div className="loading-cont">Loading...</div>
+          ) : (
+            this.getUserItems()
+          )}
         </div>
       </div>
     );
@@ -62,38 +59,9 @@ class UsersPage extends React.Component {
   getUserEntries() {
     const { users } = this.props;
 
-    const userComps = [];
-    for (const user of users) {
-      userComps.push(this.getUserItem(user));
-    }
-
-    return userComps;
-  }
-
-  getUserItem(user) {
-    const seperator = '-'; // '•';
-    const userDisplayName = `${user.firstName} ${user.lastName} @${user.username}`;
-
-    return (
-      <div key={user.id} className="user-item">
-        <div className="names-cont">
-          <NavLink className="action-link" to={`/users/${user.id}`}>
-            {userDisplayName}
-          </NavLink>{' '}
-          {seperator} joined at <PostedAgo timestamp={user.createdAt} />
-        </div>
-        <div>
-          <span>{user.updates} updates</span> {seperator}{' '}
-          <span>{user.followers} followers</span> {seperator}{' '}
-          <span>{user.following} following</span>
-        </div>
-        <div className="user-actions">
-          <span className="action-link" onClick={() => this.delete(user.id)}>
-            delete
-          </span>
-        </div>
-      </div>
-    );
+    return users.map(user => (
+      <UserItem key={user.id} user={user} handleDeleteUser={this.delete} />
+    ));
   }
 }
 
