@@ -1,18 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import ShowUpdates from '../show-updates/show-updates.component';
 
 import { loadUpdates } from '../../redux/update/actions';
-
-const mapStateToProps = state => ({
-  updates: state.update.updates,
-  loadingUpdates: state.update.loadingUpdates
-});
-
-const mapDispatchToProps = {
-  loadUpdates
-};
+import { getUpdates, getIsLoadingUpdates } from '../../redux/update/selectors';
 
 class UpdatesPage extends React.Component {
   constructor(props) {
@@ -22,13 +15,13 @@ class UpdatesPage extends React.Component {
   }
 
   render() {
-    const { updates, loadingUpdates } = this.props;
+    const { updates, isLoading } = this.props;
 
     return (
       <div className="users-page-cont">
         <div className="users-cont">
           <h1>List Updates</h1>
-          {loadingUpdates ? (
+          {isLoading ? (
             <div>Loading...</div>
           ) : (
             <ShowUpdates updates={updates} />
@@ -38,6 +31,15 @@ class UpdatesPage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = createStructuredSelector({
+  updates: getUpdates,
+  isLoading: getIsLoadingUpdates
+});
+
+const mapDispatchToProps = {
+  loadUpdates
+};
 
 export default connect(
   mapStateToProps,
