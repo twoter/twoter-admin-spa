@@ -1,31 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { hideModal } from '../redux/modal/actions';
 
 const AlertDialog = ({ title, message, showModal, onClose, onOk }) => {
   return (
     <div
+      className="alert-dialog-backdrop"
       style={{
-        display: showModal ? 'block' : 'none',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%'
+        display: showModal ? 'block' : 'none'
       }}
     >
-      <div
-        style={{
-          width: '300px',
-          border: '1px solid #000',
-          backgroundColor: '#FFF',
-          padding: 10,
-          zIndex: 1000,
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          margin: 'auto',
-          marginTop: '200px'
-        }}
-      >
+      <div className="alert-dialog">
         <div className="alert-dialog-title">{title}</div>
         <div className="alert-dialog-message">{message}</div>
         <div>
@@ -44,4 +30,18 @@ const AlertDialog = ({ title, message, showModal, onClose, onOk }) => {
   );
 };
 
-export default AlertDialog;
+const mapStateToProps = ({ modal }) => ({
+  title: modal.title,
+  message: modal.message,
+  showModal: modal.showModal,
+  onOk: modal.onOk
+});
+
+const mapDispatchToProps = {
+  onClose: hideModal
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AlertDialog);

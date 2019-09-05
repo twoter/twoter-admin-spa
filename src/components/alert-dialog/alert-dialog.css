@@ -1,8 +1,29 @@
+.alert-dialog {
+  width: 300px;
+  border: 1px solid #000;
+  background-color: #fff;
+  padding: 10px;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.alert-dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
 .alert-dialog-title {
   padding: 5px;
 }
 
 .alert-dialog-message {
   padding: 5px;
-  padding-bottom: 10px
+  padding-bottom: 10px;
 }
