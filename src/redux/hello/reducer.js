@@ -1,8 +1,4 @@
-import {
-  ACTION_ONE,
-  CONT2_LOADING,
-  CONT2_LOADED
-} from './types';
+import { ACTION_ONE, CONT2_LOADING, CONT2_LOADED } from './types';
 
 export default (state = {}, action) => {
   switch (action.type) {

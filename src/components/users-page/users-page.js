@@ -7,7 +7,6 @@ import { getUsers, getIsLoadingUsers } from '../../redux/user/selectors';
 
 import UserItemsContainer from '../users-items/user-items.container';
 
-
 const UsersPage = ({ loadUsers, users, isLoading }) => {
   useEffect(() => {
     loadUsers();

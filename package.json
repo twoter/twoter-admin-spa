@@ -8,7 +8,7 @@
     "start-fake-backend": "node backend/server.js",
     "build:prod": "webpack --mode production",
     "eslint": "eslint ./src --fix",
-    "prettier": "prettier --write \"**/*.{js,jsx}\""
+    "prettier": "prettier --write \"**/*.{js,jsx,css}\""
   },
   "author": "Velizar Ivanov",
   "license": "ISC",
